@@ -125,19 +125,37 @@ function ContactPage() {
             <li className="flex items-start gap-3">
               <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" />
               <span>
-                Hemant Tiles and Building Materials, Tengdamod, Varanasi, Uttar
-                Pradesh
+                Hemant Tiles and Building Materials, Sankar Nagar Colony,
+                661/2, near Jio Tower, Ram Nagar Industrial Area, Tengra mod,
+                Ramnagar, Varanasi, Uttar Pradesh 221008
               </span>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-5 w-5 shrink-0 text-primary" />
-              <span>+91 00000 00000</span>
+              <a href="tel:+919451365107" className="hover:text-foreground">
+                +91 94513 65107
+              </a>
             </li>
             <li className="flex items-center gap-3">
               <Mail className="h-5 w-5 shrink-0 text-primary" />
-              <span>info@hemanttiles.com</span>
+              <a href="mailto:hemantsingh1965@gmail.com" className="hover:text-foreground">
+                hemantsingh1965@gmail.com
+              </a>
             </li>
           </ul>
+          <div className="mt-6 flex items-start gap-3 rounded-xl border-2 border-primary/20 bg-primary/5 p-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <p className="font-display text-lg font-semibold text-foreground leading-tight">
+                Open from 9:00 AM
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Monday – Saturday, 9:00 AM onwards
+              </p>
+            </div>
+          </div>
         </div>
         <form
           onSubmit={handleSubmit}
