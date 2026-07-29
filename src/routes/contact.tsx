@@ -57,7 +57,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const search = useSearch() as { interest?: string };
+  const search = useSearch({ strict: false }) as { interest?: string };
   const [form, setForm] = useState({
     name: "",
     phone: "",
