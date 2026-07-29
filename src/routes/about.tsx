@@ -93,9 +93,17 @@ function AboutPage() {
         <p className="mt-2 text-muted-foreground">
           Hemant Tiles and Building Materials
         </p>
-        <p className="text-muted-foreground">Tengdamod, Varanasi, Uttar Pradesh</p>
+        <p className="text-muted-foreground">
+          Sankar Nagar Colony, 661/2, near Jio Tower, Ram Nagar Industrial
+          Area, Tengra mod, Ramnagar, Varanasi, Uttar Pradesh 221008
+        </p>
         <p className="mt-4 text-sm text-muted-foreground">
-          Open Monday – Saturday, 9:00 AM – 7:00 PM
+          Phone: <a href="tel:+919451365107" className="hover:text-foreground">+91 94513 65107</a>
+          {" · "}
+          Email: <a href="mailto:hemantsingh1965@gmail.com" className="hover:text-foreground">hemantsingh1965@gmail.com</a>
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Open Monday – Saturday, from 9:00 AM
         </p>
       </div>
     </div>

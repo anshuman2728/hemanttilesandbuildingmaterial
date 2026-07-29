@@ -15,7 +15,10 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const BUSINESS_NAME = "Hemant Tiles and Building Materials";
-const PHONE = "+91 00000 00000";
+const PHONE = "+91 94513 65107";
+const EMAIL = "hemantsingh1965@gmail.com";
+const ADDRESS =
+  "Sankar Nagar Colony, 661/2, near Jio Tower, Ram Nagar Industrial Area, Tengra mod, Ramnagar, Varanasi, Uttar Pradesh 221008";
 
 function NotFoundComponent() {
   return (
@@ -163,6 +166,7 @@ function Header() {
         <nav className="hidden items-center gap-8 md:flex">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/products">Products</NavLink>
+          <NavLink to="/calculator">Tile Calculator</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </nav>
@@ -181,6 +185,7 @@ function Header() {
           <div className="flex flex-col gap-3">
             <MobileLink to="/" onClick={() => setOpen(false)}>Home</MobileLink>
             <MobileLink to="/products" onClick={() => setOpen(false)}>Products</MobileLink>
+            <MobileLink to="/calculator" onClick={() => setOpen(false)}>Tile Calculator</MobileLink>
             <MobileLink to="/about" onClick={() => setOpen(false)}>About</MobileLink>
             <MobileLink to="/contact" onClick={() => setOpen(false)}>Contact</MobileLink>
           </div>
@@ -227,13 +232,16 @@ function Footer() {
             <h4 className="font-display text-base font-semibold text-foreground">Contact</h4>
             <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0" /> Tengdamod, Varanasi, Uttar Pradesh
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>{ADDRESS}</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0" /> {PHONE}
+                <Phone className="h-4 w-4 shrink-0" />
+                <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="hover:text-foreground">{PHONE}</a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0" /> info@hemanttiles.com
+                <Mail className="h-4 w-4 shrink-0" />
+                <a href={`mailto:${EMAIL}`} className="hover:text-foreground">{EMAIL}</a>
               </li>
             </ul>
           </div>

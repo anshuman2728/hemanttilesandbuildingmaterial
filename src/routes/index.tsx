@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Clock, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero.jpg";
 import { products } from "@/lib/products";
@@ -59,9 +59,28 @@ function HomePage() {
                 <Link to="/contact">Get a quote</Link>
               </Button>
             </div>
-            <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground">
-              <Phone className="h-4 w-4" />
-              <span>Call us: +91 00000 00000</span>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <a href="tel:+919451365107" className="flex items-center gap-2 hover:text-foreground">
+                <Phone className="h-4 w-4" />
+                <span>+91 94513 65107</span>
+              </a>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                <span>Open daily from 9:00 AM</span>
+              </div>
+            </div>
+            <div className="mt-6 inline-flex items-center gap-3 rounded-xl border-2 border-primary/20 bg-primary/5 px-5 py-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                <Clock className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="font-display text-lg font-semibold text-foreground leading-tight">
+                  We're Open from 9:00 AM
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Monday – Saturday · Walk-ins welcome
+                </p>
+              </div>
             </div>
           </div>
           <div className="order-1 lg:order-2">
@@ -120,13 +139,38 @@ function HomePage() {
       </section>
 
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="flex items-start gap-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Calculator className="h-7 w-7" />
+            </div>
+            <div>
+              <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+                Not sure how many tiles you need?
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Use our free tile area calculator to estimate the number of
+                tiles required for your room — including cutting wastage.
+              </p>
+            </div>
+          </div>
+          <Button asChild size="lg">
+            <Link to="/calculator">
+              Open calculator
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-2xl bg-primary px-6 py-12 text-primary-foreground sm:px-12 lg:py-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-3xl font-bold">
               Ready to start your project?
             </h2>
             <p className="mt-4 text-lg text-primary-foreground/80">
-              Visit our store in Tengdamod, Varanasi, or send us an inquiry and
+              Visit our store in Ramnagar, Varanasi, or send us an inquiry and
               we will get back to you.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
