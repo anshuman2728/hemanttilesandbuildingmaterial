@@ -62,7 +62,7 @@ function ContactPage() {
     name: "",
     phone: "",
     email: "",
-    productInterest: search.interest || "",
+    productInterest: search.interest || "general",
     message: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
