@@ -7,10 +7,15 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { MapPin, Phone, Mail, Menu, X } from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+const BUSINESS_NAME = "Hemant Tiles and Building Materials";
+const PHONE = "+91 00000 00000";
 
 function NotFoundComponent() {
   return (
@@ -77,14 +82,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: BUSINESS_NAME },
+      {
+        name: "description",
+        content:
+          "Premium tiles, marble, and washroom appliances in Tengdamod, Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
+      },
+      { name: "author", content: BUSINESS_NAME },
+      { property: "og:title", content: BUSINESS_NAME },
+      {
+        property: "og:description",
+        content:
+          "Premium tiles, marble, and washroom appliances in Tengdamod, Varanasi.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: BUSINESS_NAME },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -92,6 +105,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Sans:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -106,11 +129,120 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="flex min-h-screen flex-col font-body antialiased">
         {children}
         <Scripts />
       </body>
     </html>
+  );
+}
+
+function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
+    <Link
+      to={to}
+      className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+      activeProps={{
+        className: "text-foreground font-semibold underline underline-offset-4",
+      }}
+      activeOptions={{ exact: to === "/" }}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function Header() {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="font-display text-xl font-bold tracking-tight text-foreground">
+          Hemant Tiles
+        </Link>
+        <nav className="hidden items-center gap-8 md:flex">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </nav>
+        <div className="md:hidden">
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-accent"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="border-t border-border bg-background px-4 py-3 md:hidden">
+          <div className="flex flex-col gap-3">
+            <MobileLink to="/" onClick={() => setOpen(false)}>Home</MobileLink>
+            <MobileLink to="/products" onClick={() => setOpen(false)}>Products</MobileLink>
+            <MobileLink to="/about" onClick={() => setOpen(false)}>About</MobileLink>
+            <MobileLink to="/contact" onClick={() => setOpen(false)}>Contact</MobileLink>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+function MobileLink({ to, onClick, children }: { to: string; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
+      activeProps={{ className: "text-foreground font-semibold" }}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border bg-muted/30">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div>
+            <h3 className="font-display text-lg font-semibold text-foreground">Hemant Tiles</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Premium tiles, marble, and washroom appliances in Varanasi.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-display text-base font-semibold text-foreground">Quick Links</h4>
+            <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+              <li><Link to="/" className="hover:text-foreground">Home</Link></li>
+              <li><Link to="/products" className="hover:text-foreground">Products</Link></li>
+              <li><Link to="/about" className="hover:text-foreground">About</Link></li>
+              <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-display text-base font-semibold text-foreground">Contact</h4>
+            <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" /> Tengdamod, Varanasi, Uttar Pradesh
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0" /> {PHONE}
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 shrink-0" /> info@hemanttiles.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-8 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} {BUSINESS_NAME}. All rights reserved.
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -119,8 +251,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Header />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+      <Toaster />
     </QueryClientProvider>
   );
 }
