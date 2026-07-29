@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Premium tiles, marble, and washroom appliances in Varanasi.",
+          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       { property: "og:url", content: "/" },
     ],

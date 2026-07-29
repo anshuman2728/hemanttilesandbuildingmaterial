@@ -89,25 +89,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Premium tiles, marble, and washroom appliances in Tengdamod, Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
+          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       { name: "author", content: BUSINESS_NAME },
       { property: "og:title", content: BUSINESS_NAME },
       {
         property: "og:description",
         content:
-          "Premium tiles, marble, and washroom appliances in Tengdamod, Varanasi.",
+          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: BUSINESS_NAME },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Hemant Tiles and Building Materials — Tengdamod, Varanasi" },
+      { property: "og:title", content: "Hemant Tiles and Building Materials — Tengdamod, Varanasi" },
+      { name: "twitter:title", content: "Hemant Tiles and Building Materials — Tengdamod, Varanasi" },
+      { name: "twitter:description", content: "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/596dd42d-ee88-451e-8186-c85ba2b880ec" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/596dd42d-ee88-451e-8186-c85ba2b880ec" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
