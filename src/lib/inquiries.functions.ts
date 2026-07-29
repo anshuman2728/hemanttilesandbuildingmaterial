@@ -11,7 +11,7 @@ const inquirySchema = z.object({
 });
 
 export const submitInquiry = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => inquirySchema.parse(data))
+  .validator((data: unknown) => inquirySchema.parse(data))
   .handler(async ({ data }) => {
     const { error } = await (supabase as any).from("inquiries").insert({
       name: data.name,
