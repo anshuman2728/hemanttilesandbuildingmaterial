@@ -83,14 +83,21 @@ function ContactPage() {
     }
     setSubmitting(true);
     try {
-      const response = await submitInquiry({ data: result.data });
+      const payload = {
+        ...result.data,
+        productInterest:
+          result.data.productInterest === "general"
+            ? undefined
+            : result.data.productInterest,
+      };
+      const response = await submitInquiry({ data: payload });
       if (response.success) {
         toast.success("Inquiry sent! We will contact you soon.");
         setForm({
           name: "",
           phone: "",
           email: "",
-          productInterest: "",
+          productInterest: "general",
           message: "",
         });
       } else {
@@ -142,9 +149,7 @@ function ContactPage() {
               <Input
                 id="name"
                 value={form.name}
-                onChange={(e) =>
-                  setForm({ ...form, name: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="Your name"
                 aria-invalid={!!errors.name}
               />
@@ -157,9 +162,7 @@ function ContactPage() {
               <Input
                 id="phone"
                 value={form.phone}
-                onChange={(e) =>
-                  setForm({ ...form, phone: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 placeholder="Phone number"
                 aria-invalid={!!errors.phone}
               />
@@ -174,9 +177,7 @@ function ContactPage() {
               id="email"
               type="email"
               value={form.email}
-              onChange={(e) =>
-                setForm({ ...form, email: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="you@example.com"
               aria-invalid={!!errors.email}
             />
@@ -196,7 +197,7 @@ function ContactPage() {
                 <SelectValue placeholder="Select a product" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">General inquiry</SelectItem>
+                <SelectItem value="general">General inquiry</SelectItem>
                 {products.map((p) => (
                   <SelectItem key={p.id} value={p.id}>
                     {p.title}
@@ -210,9 +211,7 @@ function ContactPage() {
             <Textarea
               id="message"
               value={form.message}
-              onChange={(e) =>
-                setForm({ ...form, message: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
               placeholder="Tell us what you need..."
               rows={4}
               aria-invalid={!!errors.message}
@@ -229,3 +228,4 @@ function ContactPage() {
     </div>
   );
 }
+
