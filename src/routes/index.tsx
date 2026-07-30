@@ -109,16 +109,18 @@ function HomePage() {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="group rounded-xl border border-border bg-card p-4 shadow-sm transition-shadow hover:shadow-md"
+                className="group rounded-xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
               >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  width={400}
-                  height={300}
-                  className="aspect-[4/3] w-full rounded-lg object-cover"
-                  loading="lazy"
-                />
+                <div className="overflow-hidden rounded-lg">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    width={400}
+                    height={300}
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="mt-4">
                   <h3 className="font-display text-xl font-semibold text-card-foreground">
                     {product.shortTitle}
@@ -127,13 +129,15 @@ function HomePage() {
                     {product.description}
                   </p>
                   <Button asChild variant="link" className="mt-2 h-auto p-0">
-                    <Link to={`/products?interest=${product.id}`}>
+                    <Link to="/products">
                       Learn more
+                      <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
                   </Button>
                 </div>
               </div>
             ))}
+
           </div>
         </div>
       </section>
