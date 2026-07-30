@@ -130,19 +130,23 @@ function ContactPage() {
                 Ramnagar, Varanasi, Uttar Pradesh 221008
               </span>
             </li>
-            <li className="flex items-center gap-3">
-              <Phone className="h-5 w-5 shrink-0 text-primary" />
-              <a href="tel:+919451365107" className="hover:text-foreground">
-                +91 94513 65107
-              </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Mail className="h-5 w-5 shrink-0 text-primary" />
-              <a href="mailto:hemantsingh1965@gmail.com" className="hover:text-foreground">
-                hemantsingh1965@gmail.com
-              </a>
-            </li>
           </ul>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="tel:+919451365107"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+            >
+              <Phone className="h-5 w-5" />
+              Call +91 94513 65107
+            </a>
+            <a
+              href="mailto:hemantsingh1965@gmail.com"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-accent"
+            >
+              <Mail className="h-5 w-5" />
+              Email Us
+            </a>
+          </div>
           <div className="mt-6 flex items-start gap-3 rounded-xl border-2 border-primary/20 bg-primary/5 p-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
