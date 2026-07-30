@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { products } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Products — Hemant Tiles and Building Materials" },
