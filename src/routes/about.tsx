@@ -17,7 +17,7 @@ export const Route = createFileRoute("/about")({
       {
         property: "og:description",
         content:
-          "Trusted supplier of tiles, marble, and washroom appliances in Tengdamod, Varanasi.",
+          "Trusted supplier of tiles, granite, and washroom appliances in Tengdamod, Varanasi.",
       },
       { property: "og:url", content: "/about" },
     ],

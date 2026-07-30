@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
+          "Premium tiles, granite, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       {
         property: "og:title",
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
+          "Premium tiles, granite, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -44,7 +44,7 @@ function HomePage() {
               Build beautiful spaces with Hemant Tiles
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              Trusted supplier of premium tiles, marble, and washroom
+              Trusted supplier of premium tiles, granite, and washroom
               appliances in Tengdamod, Varanasi. We help homeowners, builders,
               and architects find the right finish.
             </p>
@@ -86,7 +86,7 @@ function HomePage() {
           <div className="order-1 lg:order-2">
             <img
               src={heroImg}
-              alt="Modern tile showroom with marble and ceramic displays"
+              alt="Modern tile showroom with granite and ceramic displays"
               width={1024}
               height={1024}
               className="aspect-square rounded-2xl object-cover shadow-lg"
@@ -109,16 +109,18 @@ function HomePage() {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="group rounded-xl border border-border bg-card p-4 shadow-sm transition-shadow hover:shadow-md"
+                className="group rounded-xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
               >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  width={400}
-                  height={300}
-                  className="aspect-[4/3] w-full rounded-lg object-cover"
-                  loading="lazy"
-                />
+                <div className="overflow-hidden rounded-lg">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    width={400}
+                    height={300}
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="mt-4">
                   <h3 className="font-display text-xl font-semibold text-card-foreground">
                     {product.shortTitle}
@@ -127,13 +129,15 @@ function HomePage() {
                     {product.description}
                   </p>
                   <Button asChild variant="link" className="mt-2 h-auto p-0">
-                    <Link to={`/products?interest=${product.id}`}>
+                    <Link to="/products">
                       Learn more
+                      <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
                   </Button>
                 </div>
               </div>
             ))}
+
           </div>
         </div>
       </section>

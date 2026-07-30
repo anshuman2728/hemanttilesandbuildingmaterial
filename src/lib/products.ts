@@ -1,5 +1,5 @@
 import tilesImg from "@/assets/tiles.jpg";
-import marbleImg from "@/assets/marble.jpg";
+import graniteImg from "@/assets/granite.jpg";
 import washroomImg from "@/assets/washroom.jpg";
 
 export interface Product {
@@ -22,13 +22,13 @@ export const products: Product[] = [
     image: tilesImg,
   },
   {
-    id: "marble",
-    title: "Marble & Granite",
-    shortTitle: "Marble",
-    description: "Natural and engineered marble for elegant flooring and countertops.",
+    id: "granite",
+    title: "Granite & Natural Stone",
+    shortTitle: "Granite",
+    description: "Durable granite slabs for elegant flooring, staircases, and countertops.",
     details:
-      "Choose from imported and Indian marble, granite slabs, and countertop surfaces that add lasting value.",
-    image: marbleImg,
+      "Choose from black, grey, brown, and speckled granite slabs — polished, honed, and flamed finishes for kitchens, countertops, and heavy-traffic flooring.",
+    image: graniteImg,
   },
   {
     id: "washroom",
