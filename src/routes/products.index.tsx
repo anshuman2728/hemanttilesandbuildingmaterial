@@ -118,7 +118,11 @@ function ProductsPage() {
               key={product.id}
               className="group overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <Link
+                to="/products/$productId"
+                params={{ productId: product.id }}
+                className="block aspect-[4/3] overflow-hidden"
+              >
                 <img
                   src={product.image}
                   alt={product.title}
@@ -127,18 +131,27 @@ function ProductsPage() {
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-              </div>
+              </Link>
               <CardHeader>
                 <h2 className="font-display text-2xl font-semibold text-card-foreground">
-                  {product.title}
+                  <Link
+                    to="/products/$productId"
+                    params={{ productId: product.id }}
+                    className="hover:text-primary"
+                  >
+                    {product.title}
+                  </Link>
                 </h2>
+                <p className="text-sm font-medium text-primary">
+                  From {product.priceFrom} {product.priceUnit}
+                </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground">{product.details}</p>
                 <div className="flex flex-wrap gap-2">
                   <Button asChild>
-                    <Link to={`/contact?interest=${product.id}`}>
-                      Get a quote
+                    <Link to="/products/$productId" params={{ productId: product.id }}>
+                      View details
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -150,6 +163,7 @@ function ProductsPage() {
                   </Button>
                 </div>
               </CardContent>
+
             </Card>
           ))}
         </div>
