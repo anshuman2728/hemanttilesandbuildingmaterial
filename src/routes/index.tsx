@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
+          "Premium tiles, granite, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       {
         property: "og:title",
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Premium tiles, marble, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
+          "Premium tiles, granite, and washroom appliances in Varanasi. Visit Hemant Tiles and Building Materials for quality products and expert guidance.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -44,7 +44,7 @@ function HomePage() {
               Build beautiful spaces with Hemant Tiles
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              Trusted supplier of premium tiles, marble, and washroom
+              Trusted supplier of premium tiles, granite, and washroom
               appliances in Tengdamod, Varanasi. We help homeowners, builders,
               and architects find the right finish.
             </p>
@@ -86,7 +86,7 @@ function HomePage() {
           <div className="order-1 lg:order-2">
             <img
               src={heroImg}
-              alt="Modern tile showroom with marble and ceramic displays"
+              alt="Modern tile showroom with granite and ceramic displays"
               width={1024}
               height={1024}
               className="aspect-square rounded-2xl object-cover shadow-lg"

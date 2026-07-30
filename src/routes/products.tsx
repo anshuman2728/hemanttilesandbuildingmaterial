@@ -11,7 +11,7 @@ export const Route = createFileRoute("/products")({
       {
         name: "description",
         content:
-          "Browse our range of tiles, marble, and washroom appliances in Varanasi.",
+          "Browse our range of tiles, granite, and washroom appliances in Varanasi.",
       },
       {
         property: "og:title",
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/products")({
       {
         property: "og:description",
         content:
-          "Browse our range of tiles, marble, and washroom appliances in Varanasi.",
+          "Browse our range of tiles, granite, and washroom appliances in Varanasi.",
       },
       { property: "og:url", content: "/products" },
     ],
@@ -37,7 +37,7 @@ function ProductsPage() {
           Our Products
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          We supply high-quality tiles, marble, and washroom appliances for
+          We supply high-quality tiles, granite, and washroom appliances for
           homes and commercial projects.
         </p>
       </div>
