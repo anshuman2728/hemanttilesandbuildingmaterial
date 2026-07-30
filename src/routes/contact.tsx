@@ -156,6 +156,16 @@ function ContactPage() {
               </p>
             </div>
           </div>
+          <div className="mt-6 overflow-hidden rounded-2xl border border-border shadow-sm">
+            <iframe
+              title="Hemant Tiles and Building Materials location map"
+              src="https://maps.google.com/maps?q=Sankar%20Nagar%20Colony%2C%20Ram%20Nagar%20Industrial%20Area%2C%20Tengra%20mod%2C%20Ramnagar%2C%20Varanasi%2C%20Uttar%20Pradesh%20221008&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              className="h-80 w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
         </div>
         <form
           onSubmit={handleSubmit}
