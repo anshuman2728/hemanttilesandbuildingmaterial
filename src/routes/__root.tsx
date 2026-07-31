@@ -231,7 +231,9 @@ function Footer() {
               <li><Link to="/products" className="hover:text-foreground">Products</Link></li>
               <li><Link to="/about" className="hover:text-foreground">About</Link></li>
               <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+              <li><Link to="/admin" className="hover:text-foreground">Staff Login</Link></li>
             </ul>
+
           </div>
           <div>
             <h4 className="font-display text-base font-semibold text-foreground">Contact</h4>
