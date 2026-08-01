@@ -38,7 +38,7 @@ const chapters = [
     title: "Start with the surface",
     body: "Floors set the mood of a home. We stock vitrified, ceramic, and wooden-finish tiles in sizes from 1×1 to 2×4 feet — glossy, matte, or anti-skid.",
     icon: Sparkles,
-    to: "/products/tiles",
+    id: "tiles",
     cta: "See the tile range",
   },
   {
@@ -46,7 +46,7 @@ const chapters = [
     title: "Add character with granite",
     body: "Kitchen platforms, staircases, thresholds and temple tops. Hand-picked granite slabs with consistent grain, polished edges and honest per-square-foot pricing.",
     icon: ShieldCheck,
-    to: "/products/granite",
+    id: "granite",
     cta: "See granite slabs",
   },
   {
@@ -54,7 +54,7 @@ const chapters = [
     title: "Finish the washroom",
     body: "Sanitaryware, CP fittings, showers and basins from trusted brands — matched to your tiles so the whole room reads as one design.",
     icon: Truck,
-    to: "/products/washroom",
+    id: "washroom",
     cta: "See washroom range",
   },
 ];
@@ -174,7 +174,7 @@ function HomePage() {
                         {chapter.body}
                       </p>
                       <Button asChild variant="link" className="mt-3 h-auto p-0">
-                        <Link to={chapter.to}>
+                        <Link to="/products/$productId" params={{ productId: chapter.id }}>
                           {chapter.cta}
                           <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                         </Link>
