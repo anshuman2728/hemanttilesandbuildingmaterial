@@ -478,9 +478,8 @@ function CalculatorPage() {
                     </a>
                     <Button
                       type="button"
-                      variant="outline"
                       onClick={copySummary}
-                      className="w-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                      className="w-full border border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20"
                     >
                       <Copy className="mr-2 h-4 w-4" />
                       Copy estimate
