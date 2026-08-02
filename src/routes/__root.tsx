@@ -436,6 +436,8 @@ function Footer() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { location } = useRouterState();
+  const isHome = location.pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -443,7 +445,7 @@ function RootComponent() {
       <ScrollProgress />
       <CursorGlow />
       <Header />
-      <main className="flex-1">
+      <main className={cn("flex-1", !isHome && "pt-20")}>
         <Outlet />
       </main>
       <Footer />
