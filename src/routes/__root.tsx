@@ -327,24 +327,25 @@ function Header() {
           mega ? "max-h-[26rem] border-t opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <div className="container mx-auto grid grid-cols-5 gap-8 px-4 py-10 sm:px-6 lg:px-8">
-          {categoryGroups.map((c) => (
-            <div key={c.id}>
+        <div className="container mx-auto grid grid-cols-5 gap-10 px-4 py-12 sm:px-6 lg:px-8">
+          {MEGA.map((c) => (
+            <div key={c.title}>
               <Link
                 to="/products/$productId"
                 params={{ productId: c.productId }}
-                className="group inline-flex items-center gap-1 text-sm font-medium text-foreground"
+                className="group inline-flex items-center gap-1 font-display text-lg text-foreground"
               >
                 {c.title}
-                <ArrowUpRight className="h-3 w-3 text-gold transition-transform group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-gold transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              <ul className="mt-3 space-y-1.5">
-                {c.items.slice(0, 7).map((i) => (
+              <span className="mt-3 block h-px w-8 bg-gold/60" />
+              <ul className="mt-4 space-y-2">
+                {c.items.map((i) => (
                   <li key={i}>
                     <Link
                       to="/products/$productId"
                       params={{ productId: c.productId }}
-                      className="text-xs text-muted-foreground transition-colors hover:text-gold"
+                      className="text-xs tracking-wide text-muted-foreground transition-colors duration-300 hover:text-gold"
                     >
                       {i}
                     </Link>
@@ -354,6 +355,7 @@ function Header() {
             </div>
           ))}
         </div>
+
       </div>
 
       {/* mobile drawer */}
