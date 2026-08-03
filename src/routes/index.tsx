@@ -35,6 +35,12 @@ import {
   testimonials,
   whyChooseUs,
 } from "@/lib/catalog";
+import {
+  LegacyTimeline,
+  MaterialsMatter,
+  RoomExplorer,
+} from "@/components/story-sections";
+import { CollectionsStory } from "@/components/CollectionsStory";
 import { whatsappLink, WhatsAppIcon } from "@/lib/whatsapp";
 import heroImg from "@/assets/hero-cinematic.jpg";
 import livingImg from "@/assets/space-living.jpg";
@@ -951,6 +957,10 @@ function HomePage() {
       />
       <Hero />
       <StoryStatements />
+      <LegacyTimeline />
+      <MaterialsMatter />
+      <RoomExplorer />
+      <CollectionsStory />
       <SpaceJourney />
       <Categories />
       <BrowseBySpace />
