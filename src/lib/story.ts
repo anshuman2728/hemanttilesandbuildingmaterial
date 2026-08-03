@@ -1,4 +1,3 @@
-import tilesImg from "@/assets/tiles.jpg";
 import tiles2Img from "@/assets/tiles-2.jpg";
 import tiles3Img from "@/assets/tiles-3.jpg";
 import graniteImg from "@/assets/granite.jpg";
@@ -566,5 +565,3 @@ export const chapters: Chapter[] = [
     productId: "washroom",
   },
 ];
-
-export const galleryExtras = [tilesImg, tiles2Img];
