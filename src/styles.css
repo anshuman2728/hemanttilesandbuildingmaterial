@@ -65,6 +65,17 @@
   --animate-marquee-slow: marquee 70s linear infinite;
   --animate-shimmer: shimmer 2.2s ease-in-out infinite;
   --animate-float-slow: float-slow 9s ease-in-out infinite;
+  --animate-scroll-cue: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+
+  @keyframes scroll-cue {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(400%);
+    }
+  }
+
 
   @keyframes marquee {
     from {
