@@ -153,11 +153,75 @@ function RootShell({ children }: { children: ReactNode }) {
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/products", label: "Products" },
-  { to: "/calculator", label: "Estimator" },
+  { to: "/products", label: "Collections" },
+  { to: "/calculator", label: "Calculator" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
+
+/** Mega menu columns — luxury surface families. */
+const MEGA: {
+  title: string;
+  productId: "tiles" | "granite" | "washroom";
+  items: string[];
+}[] = [
+  {
+    title: "Tiles",
+    productId: "tiles",
+    items: [
+      "Floor Tiles",
+      "Wall Tiles",
+      "Large Format",
+      "Wooden Finish",
+      "Outdoor & Parking",
+    ],
+  },
+  {
+    title: "Granite",
+    productId: "granite",
+    items: [
+      "Kitchen Platforms",
+      "Staircase Steps",
+      "Door Frames",
+      "Black Galaxy",
+      "Polished Slabs",
+    ],
+  },
+  {
+    title: "Marble",
+    productId: "granite",
+    items: [
+      "Italian Marble",
+      "Makrana White",
+      "Onyx Feature Walls",
+      "Temple Marble",
+      "Inlay Work",
+    ],
+  },
+  {
+    title: "Sanitary",
+    productId: "washroom",
+    items: [
+      "Wash Basins",
+      "Water Closets",
+      "CP Fittings",
+      "Showers & Panels",
+      "Bath Accessories",
+    ],
+  },
+  {
+    title: "Brands & Projects",
+    productId: "tiles",
+    items: [
+      "Featured Brands",
+      "Completed Projects",
+      "Showroom Walkthrough",
+      "Design Consultation",
+      "Trade Enquiries",
+    ],
+  },
+];
+
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
