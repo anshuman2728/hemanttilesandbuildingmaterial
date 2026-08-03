@@ -389,9 +389,43 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="bg-ink text-ink-foreground">
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="relative overflow-hidden bg-ink text-ink-foreground">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-gold/10 blur-3xl"
+      />
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 border-b border-white/10 py-16 lg:grid-cols-[1.5fr_auto] lg:items-end">
+          <div>
+            <span className="eyebrow text-gold">Let's begin your space</span>
+            <p className="mt-5 max-w-2xl font-display text-3xl leading-[1.1] sm:text-5xl">
+              Every space begins with a{" "}
+              <span className="italic text-gold">surface.</span>
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={whatsappLink(
+                "Hello, I visited your website and I would like a free quote.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              <WhatsAppIcon className="h-4 w-4" /> Free Quote
+            </a>
+            <Link
+              to="/calculator"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-medium text-ink-foreground transition-colors duration-300 hover:bg-white hover:text-ink"
+            >
+              Calculate Tiles
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="container relative mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+
           <div>
             <p className="font-display text-3xl">Hemant Tiles</p>
             <p className="mt-1 text-[0.6rem] uppercase tracking-[0.3em] text-gold">
