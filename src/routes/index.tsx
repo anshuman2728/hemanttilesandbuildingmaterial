@@ -191,15 +191,40 @@ function SectionHead({
 
 /* ---------------------------------- hero ---------------------------------- */
 
+function useMouseTilt() {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    let frame = 0;
+    const onMove = (e: MouseEvent) => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        setPos({
+          x: (e.clientX / window.innerWidth - 0.5) * 2,
+          y: (e.clientY / window.innerHeight - 0.5) * 2,
+        });
+      });
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+  return pos;
+}
+
 function Hero() {
   const { ref, progress } = useScrollProgress<HTMLDivElement>();
+  const tilt = useMouseTilt();
 
   return (
     <section ref={ref} className="relative isolate min-h-[100svh] overflow-hidden bg-ink">
       <div
         className="absolute inset-0 -z-10 will-change-transform motion-reduce:!transform-none"
         style={{
-          transform: `translate3d(0, ${(progress - 0.5) * 140}px, 0) scale(1.12)`,
+          transform: `translate3d(${tilt.x * -14}px, ${(progress - 0.5) * 140 + tilt.y * -10}px, 0) scale(1.14)`,
         }}
       >
         <img
@@ -212,35 +237,68 @@ function Hero() {
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/85 via-ink/45 to-ink/95" />
 
-      <div className="container mx-auto flex min-h-[100svh] flex-col justify-center px-4 pb-40 pt-32 sm:px-6 lg:px-8">
+      {/* floating background shapes */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <span
+          className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-gold/15 blur-3xl motion-reduce:!transform-none"
+          style={{ transform: `translate3d(${tilt.x * 26}px, ${tilt.y * 20}px, 0)` }}
+        />
+        <span
+          className="absolute -right-16 bottom-32 h-96 w-96 rounded-full bg-white/10 blur-3xl motion-reduce:!transform-none"
+          style={{ transform: `translate3d(${tilt.x * -32}px, ${tilt.y * -22}px, 0)` }}
+        />
+        <span
+          className="animate-float-slow absolute left-1/2 top-1/3 h-40 w-40 rounded-3xl border border-white/15 motion-reduce:animate-none"
+          style={{ transform: `rotate(18deg) translate3d(${tilt.x * 18}px, ${tilt.y * 14}px, 0)` }}
+        />
+      </div>
+
+      <div className="container mx-auto flex min-h-[100svh] flex-col justify-center px-4 pb-48 pt-32 sm:px-6 lg:px-8">
         <Reveal direction="none">
           <span className="eyebrow text-gold">Ramnagar, Varanasi · Since 2004</span>
         </Reveal>
 
-        <h1 className="mt-7 max-w-4xl font-display text-[2.6rem] leading-[1.02] text-white sm:text-6xl lg:text-7xl">
-          <SplitHeading text="Building Beautiful" />
+        <h1 className="mt-7 max-w-4xl font-display text-[2.6rem] leading-[1.02] text-white sm:text-6xl lg:text-[5.1rem]">
+          <SplitHeading text="Every Space Begins" />
           <br className="hidden sm:block" />
-          <SplitHeading text="Spaces That Last." delay={260} wordClassName="italic text-gold" />
+          <SplitHeading text="With a Surface." delay={260} wordClassName="italic text-gold" />
         </h1>
 
         <Reveal delay={520}>
-          <p className="mt-7 max-w-xl text-sm uppercase tracking-[0.22em] text-white/70 sm:text-[0.8rem]">
-            Premium Tiles • Granite • Bathware • Building Materials
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+            Crafting premium spaces with luxury tiles, granite, marble, and
+            sanitary solutions.
           </p>
         </Reveal>
 
         <Reveal delay={640}>
           <div className="mt-10 flex flex-wrap gap-3">
-            <GoldButton to="/products">Explore Collection</GoldButton>
-            <GhostButton to="/contact">Get Free Quote</GhostButton>
+            <GoldButton to="/products">Explore Collections</GoldButton>
+            <GhostButton to="/calculator">Calculate Tiles</GhostButton>
+            <GhostButton href={MAPS_LINK} external>
+              Visit Showroom
+            </GhostButton>
           </div>
         </Reveal>
+      </div>
+
+      {/* scroll indicator */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-[13.5rem] left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex"
+      >
+        <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/50">
+          Scroll
+        </span>
+        <span className="relative h-16 w-px overflow-hidden bg-white/20">
+          <span className="animate-scroll-cue absolute inset-x-0 top-0 h-6 bg-gold motion-reduce:animate-none" />
+        </span>
       </div>
 
       {/* floating statistics */}
       <div className="absolute inset-x-0 bottom-0 px-4 pb-8 sm:px-6 lg:px-8">
         <Reveal delay={780}>
-          <div className="glass-dark container mx-auto grid grid-cols-2 gap-y-7 rounded-xl px-6 py-7 text-white sm:grid-cols-4">
+          <div className="glass-dark container mx-auto grid grid-cols-2 gap-y-7 rounded-2xl px-6 py-7 text-white sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="font-display text-3xl text-gold sm:text-4xl">
@@ -257,6 +315,7 @@ function Hero() {
     </section>
   );
 }
+
 
 /* --------------------------------- story ---------------------------------- */
 
