@@ -155,6 +155,7 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/products", label: "Collections" },
   { to: "/calculator", label: "Calculator" },
+  { to: "/visualizer", label: "Visualizer" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
