@@ -120,8 +120,38 @@ export function CursorGlow() {
 
 /* ---------------------------- floating actions ---------------------------- */
 
-const DEFAULT_MESSAGE =
-  "Hello, I visited your website and I would like to know more about your products.";
+const WA_ACTIONS: { label: string; hint: string; message: string }[] = [
+  {
+    label: "Get Quote",
+    hint: "Prices for tiles, granite & bathware",
+    message:
+      "Hello, I would like a quote. Here are my requirements (room, size, budget): ",
+  },
+  {
+    label: "Send Floor Plan",
+    hint: "Attach your plan or room photo",
+    message:
+      "Hello, I am sending my floor plan / room photo. Please suggest tiles and quantity.",
+  },
+  {
+    label: "Talk to an Expert",
+    hint: "Free surface advice",
+    message:
+      "Hello, I would like to talk to your surface expert about my project.",
+  },
+  {
+    label: "Book a Visit",
+    hint: "Showroom, open from 9 AM",
+    message:
+      "Hello, I would like to book a showroom visit. My preferred day and time is: ",
+  },
+  {
+    label: "Request a Sample",
+    hint: "See the finish at home",
+    message:
+      "Hello, I would like to request a tile sample. My address and the finish I want: ",
+  },
+];
 
 export function FloatingActions() {
   const [open, setOpen] = useState(false);
@@ -133,18 +163,6 @@ export function FloatingActions() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const actions = [
-    { label: "Instant chat", href: whatsappLink(DEFAULT_MESSAGE) },
-    {
-      label: "Request a call back",
-      href: whatsappLink("Hello, please call me back regarding tiles / granite / bathware. My number is: "),
-    },
-    {
-      label: "Get a free quote",
-      href: whatsappLink("Hello, I would like a free quote. Here are my requirements: "),
-    },
-  ];
 
   return (
     <div className="fixed bottom-5 right-4 z-[80] flex flex-col items-end gap-3 sm:bottom-7 sm:right-6">
@@ -167,21 +185,34 @@ export function FloatingActions() {
       </a>
 
       {open && (
-        <div className="w-60 overflow-hidden rounded-lg border border-border bg-card shadow-luxe">
-          <p className="border-b border-border px-4 py-3 text-xs text-muted-foreground">
-            How can we help?
-          </p>
+        <div className="w-72 overflow-hidden rounded-xl border border-border bg-card shadow-luxe">
+          <div className="border-b border-border px-4 py-3">
+            <p className="font-display text-base text-foreground">
+              How can we help?
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Chat with us on WhatsApp — replies from 9 AM.
+            </p>
+          </div>
           <ul className="p-1">
-            {actions.map((a) => (
+            {WA_ACTIONS.map((a) => (
               <li key={a.label}>
                 <a
-                  href={a.href}
+                  href={whatsappLink(a.message)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-accent"
+                  onClick={() => setOpen(false)}
+                  className="flex items-start gap-2.5 rounded-lg px-3 py-2.5 transition-colors hover:bg-accent"
                 >
-                  <MessageCircle className="h-3.5 w-3.5 text-gold" />
-                  {a.label}
+                  <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
+                  <span>
+                    <span className="block text-sm text-foreground">
+                      {a.label}
+                    </span>
+                    <span className="block text-[0.7rem] text-muted-foreground">
+                      {a.hint}
+                    </span>
+                  </span>
                 </a>
               </li>
             ))}

@@ -42,6 +42,8 @@ import {
 } from "@/components/story-sections";
 import { CollectionsStory } from "@/components/CollectionsStory";
 import { whatsappLink, WhatsAppIcon } from "@/lib/whatsapp";
+import { CtaBanner } from "@/components/CtaBanner";
+import { ShowroomMap } from "@/components/ShowroomMap";
 import heroImg from "@/assets/hero-cinematic.jpg";
 import livingImg from "@/assets/space-living.jpg";
 import tilesImg from "@/assets/tiles.jpg";
@@ -960,15 +962,41 @@ function HomePage() {
       <LegacyTimeline />
       <MaterialsMatter />
       <RoomExplorer />
+      <CtaBanner
+        eyebrow="Build your dream home"
+        title="Every great room starts with the right surface"
+        body="Tell us the room and we'll shortlist tiles, granite and bathware that work together."
+        whatsappMessage="Hello, I am planning a room and would like help choosing surfaces."
+        primaryLabel="Get Instant Quote"
+        secondary={{ to: "/products", label: "Browse collections" }}
+      />
       <CollectionsStory />
+      <CtaBanner
+        tone="light"
+        eyebrow="Visit our showroom"
+        title="See the finish in full size before you decide"
+        body="Walk-in displays of every collection, open daily from 9:00 AM in Ramnagar, Varanasi."
+        whatsappMessage="Hello, I would like to visit your showroom. Please share directions and timings."
+        primaryLabel="Book a Visit"
+        secondary={{ to: "/visualizer", label: "Try the Room Visualizer" }}
+      />
       <SpaceJourney />
       <Categories />
       <BrowseBySpace />
       <InspirationGallery />
       <BeforeAfterSection />
+      <CtaBanner
+        eyebrow="Book free consultation"
+        title="Get an expert plan for your project — free"
+        body="Send your floor plan or room photo and our team will estimate quantity, cost and delivery."
+        whatsappMessage="Hello, I would like a free consultation. I will send my floor plan / room photo."
+        primaryLabel="Book Free Consultation"
+        secondary={{ to: "/calculator", label: "Calculate quantity" }}
+      />
       <WhyChooseUs />
       <Brands />
       <Testimonials />
+      <ShowroomMap />
       <ShowroomSection />
       <Faq />
       <FinalCta />
