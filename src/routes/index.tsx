@@ -41,6 +41,15 @@ import {
   RoomExplorer,
 } from "@/components/story-sections";
 import { CollectionsStory } from "@/components/CollectionsStory";
+import {
+  BrandWall,
+  FaqSection,
+  LuxuryContact,
+  ProjectGallery,
+  ReviewsCarousel,
+  WhyChooseUsAnimated,
+} from "@/components/trust-sections";
+
 import { whatsappLink, WhatsAppIcon } from "@/lib/whatsapp";
 import { CtaBanner } from "@/components/CtaBanner";
 import { ShowroomMap } from "@/components/ShowroomMap";
@@ -983,8 +992,7 @@ function HomePage() {
       <SpaceJourney />
       <Categories />
       <BrowseBySpace />
-      <InspirationGallery />
-      <BeforeAfterSection />
+      <ProjectGallery />
       <CtaBanner
         eyebrow="Book free consultation"
         title="Get an expert plan for your project — free"
@@ -993,13 +1001,13 @@ function HomePage() {
         primaryLabel="Book Free Consultation"
         secondary={{ to: "/calculator", label: "Calculate quantity" }}
       />
-      <WhyChooseUs />
-      <Brands />
-      <Testimonials />
-      <ShowroomMap />
-      <ShowroomSection />
-      <Faq />
+      <WhyChooseUsAnimated />
+      <BrandWall />
+      <ReviewsCarousel />
+      <LuxuryContact />
+      <FaqSection />
       <FinalCta />
+
     </>
   );
 }
