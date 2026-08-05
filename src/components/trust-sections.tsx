@@ -318,9 +318,10 @@ export function BrandWall() {
         />
       </div>
       <Marquee className="mt-12">{row(brandWall)}</Marquee>
-      <Marquee className="mt-4" reverse slow>
+      <Marquee className="mt-4" slow>
         {row([...brandWall].reverse())}
       </Marquee>
+
     </section>
   );
 }
