@@ -41,6 +41,15 @@ import {
   RoomExplorer,
 } from "@/components/story-sections";
 import { CollectionsStory } from "@/components/CollectionsStory";
+import {
+  BrandWall,
+  FaqSection,
+  LuxuryContact,
+  ProjectGallery,
+  ReviewsCarousel,
+  WhyChooseUsAnimated,
+} from "@/components/trust-sections";
+
 import { whatsappLink, WhatsAppIcon } from "@/lib/whatsapp";
 import { CtaBanner } from "@/components/CtaBanner";
 import { ShowroomMap } from "@/components/ShowroomMap";
