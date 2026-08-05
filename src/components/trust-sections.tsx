@@ -490,7 +490,7 @@ export function LuxuryContact() {
               src={BUSINESS.mapEmbed}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="h-[28rem] w-full lg:h-[34rem]"
+              className="h-[26rem] w-full lg:h-[40rem]"
             />
           </div>
 
