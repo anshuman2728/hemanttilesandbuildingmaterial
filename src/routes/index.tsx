@@ -957,36 +957,8 @@ function FinalCta() {
 function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HomeAndConstructionBusiness",
-            name: "Hemant Tiles and Building Materials",
-            image: "https://hemanttilesandbuildingmaterial.lovable.app/og.jpg",
-            telephone: "+91 94513 65107",
-            email: "hemantsingh1965@gmail.com",
-            url: "https://hemanttilesandbuildingmaterial.lovable.app",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress:
-                "Sankar Nagar Colony, 661/2, near Jio Tower, Ram Nagar Industrial Area, Tengra mod",
-              addressLocality: "Ramnagar, Varanasi",
-              addressRegion: "Uttar Pradesh",
-              postalCode: "221008",
-              addressCountry: "IN",
-            },
-            openingHours: "Mo-Su 09:00-20:00",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.9",
-              reviewCount: "128",
-            },
-          }),
-        }}
-      />
       <Hero />
+
       <StoryStatements />
       <LegacyTimeline />
       <MaterialsMatter />
