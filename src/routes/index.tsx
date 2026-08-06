@@ -85,9 +85,24 @@ export const Route = createFileRoute("/")({
           "A curated showroom of tiles, granite, marble and bathware in Ramnagar, Varanasi. Explore collections, estimate your material, and get a free quote on WhatsApp.",
       },
       { property: "og:type", content: "website" },
+      {
+        property: "og:url",
+        content: "https://hemanttilesandbuildingmaterial.lovable.app/",
+      },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/" }],
+    links: [
+      { rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/" },
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessSchema),
+      },
+      { type: "application/ld+json", children: JSON.stringify(websiteSchema) },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema(faqs)) },
+    ],
   }),
   component: HomePage,
 });
