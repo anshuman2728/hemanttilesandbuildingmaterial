@@ -56,6 +56,11 @@ import { ShowroomMap } from "@/components/ShowroomMap";
 import heroImg from "@/assets/hero-cinematic.jpg";
 import livingImg from "@/assets/space-living.jpg";
 import tilesImg from "@/assets/tiles.jpg";
+import {
+  faqSchema,
+  localBusinessSchema,
+  websiteSchema,
+} from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 const MAPS_LINK = "https://maps.app.goo.gl/A71gEFAMbxpNEU4WA";
