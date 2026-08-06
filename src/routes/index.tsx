@@ -56,6 +56,11 @@ import { ShowroomMap } from "@/components/ShowroomMap";
 import heroImg from "@/assets/hero-cinematic.jpg";
 import livingImg from "@/assets/space-living.jpg";
 import tilesImg from "@/assets/tiles.jpg";
+import {
+  faqSchema,
+  localBusinessSchema,
+  websiteSchema,
+} from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 const MAPS_LINK = "https://maps.app.goo.gl/A71gEFAMbxpNEU4WA";
@@ -85,9 +90,24 @@ export const Route = createFileRoute("/")({
           "A curated showroom of tiles, granite, marble and bathware in Ramnagar, Varanasi. Explore collections, estimate your material, and get a free quote on WhatsApp.",
       },
       { property: "og:type", content: "website" },
+      {
+        property: "og:url",
+        content: "https://hemanttilesandbuildingmaterial.lovable.app/",
+      },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/" },
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessSchema),
+      },
+      { type: "application/ld+json", children: JSON.stringify(websiteSchema) },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema(faqs)) },
+    ],
   }),
   component: HomePage,
 });
@@ -249,6 +269,8 @@ function Hero() {
           alt="Luxury interior with polished large-format stone floor tiles"
           width={1920}
           height={1200}
+          fetchPriority="high"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </div>
@@ -385,6 +407,7 @@ function SpaceJourney() {
             src={s.image}
             alt={`${s.label} finished with premium tiles`}
             loading="lazy"
+            decoding="async"
             width={1280}
             height={1600}
             className={cn(
@@ -460,6 +483,7 @@ function Categories() {
                     src={c.image}
                     alt={c.title}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
                   />
                 </div>
@@ -537,6 +561,7 @@ function BrowseBySpace() {
                     src={s.image}
                     alt={s.label}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
                   />
                   <span className="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent" />
@@ -635,6 +660,7 @@ function InspirationGallery() {
                   src={g.src}
                   alt={g.alt}
                   loading="lazy"
+                  decoding="async"
                   className={cn(
                     "w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110",
                     g.tall ? "aspect-[3/4]" : "aspect-square",
@@ -901,6 +927,7 @@ function FinalCta() {
           alt=""
           aria-hidden="true"
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </Parallax>
@@ -937,36 +964,8 @@ function FinalCta() {
 function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HomeAndConstructionBusiness",
-            name: "Hemant Tiles and Building Materials",
-            image: "https://hemanttilesandbuildingmaterial.lovable.app/og.jpg",
-            telephone: "+91 94513 65107",
-            email: "hemantsingh1965@gmail.com",
-            url: "https://hemanttilesandbuildingmaterial.lovable.app",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress:
-                "Sankar Nagar Colony, 661/2, near Jio Tower, Ram Nagar Industrial Area, Tengra mod",
-              addressLocality: "Ramnagar, Varanasi",
-              addressRegion: "Uttar Pradesh",
-              postalCode: "221008",
-              addressCountry: "IN",
-            },
-            openingHours: "Mo-Su 09:00-20:00",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.9",
-              reviewCount: "128",
-            },
-          }),
-        }}
-      />
       <Hero />
+
       <StoryStatements />
       <LegacyTimeline />
       <MaterialsMatter />

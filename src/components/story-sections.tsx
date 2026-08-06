@@ -164,6 +164,7 @@ export function RoomExplorer() {
                     src={r.image}
                     alt={`${r.label} finished with premium surfaces`}
                     loading="lazy"
+                    decoding="async"
                     width={1280}
                     height={1600}
                     className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"

@@ -267,3 +267,51 @@
     transform-origin: left;
   }
 }
+
+/* ------------------------- final polish: a11y + motion ------------------------- */
+
+@layer base {
+  /* Visible, brand-consistent keyboard focus everywhere */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Respect reduced-motion: keep the design, drop the motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  img,
+  video {
+    content-visibility: auto;
+  }
+}
+
+/* Skip link for keyboard users */
+@utility skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -6rem;
+  z-index: 200;
+  border-radius: 9999px;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8rem;
+  transition: top 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  &:focus-visible {
+    top: 1rem;
+  }
+}

@@ -144,6 +144,7 @@ export function ProjectGallery() {
                     src={p.src}
                     alt={p.alt}
                     loading="lazy"
+                    decoding="async"
                     className={cn(
                       "w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110",
                       p.tall ? "aspect-[3/4]" : "aspect-square",
@@ -369,6 +370,7 @@ export function ReviewsCarousel() {
                       src={r.photo}
                       alt={r.name}
                       loading="lazy"
+                      decoding="async"
                       width={640}
                       height={640}
                       className="h-32 w-32 rounded-lg object-cover sm:h-36 sm:w-36"

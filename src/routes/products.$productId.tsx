@@ -33,6 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getProduct, products } from "@/lib/products";
+import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/products/$productId")({
@@ -53,16 +54,49 @@ export const Route = createFileRoute("/products/$productId")({
     }
     const title = `${product.title} — Hemant Tiles and Building Materials`;
     const description = `${product.description} Available in Ramnagar, Varanasi from ${product.priceFrom} ${product.priceUnit}.`;
+    const url = `${SITE_URL}/products/${product.id}`;
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
-        { property: "og:type", content: "website" },
+        { property: "og:type", content: "product" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `/products/${product.id}` }],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.title,
+            description: product.description,
+            category: product.title,
+            brand: { "@type": "Brand", name: "Hemant Tiles and Building Materials" },
+            offers: {
+              "@type": "AggregateOffer",
+              priceCurrency: "INR",
+              lowPrice: product.priceFrom.replace(/[^\d.]/g, ""),
+              availability: "https://schema.org/InStock",
+              url,
+              seller: { "@id": `${SITE_URL}/#business` },
+            },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Collections", path: "/products" },
+              { name: product.title, path: `/products/${product.id}` },
+            ]),
+          ),
+        },
+      ],
     };
   },
   notFoundComponent: ProductNotFound,
@@ -138,6 +172,7 @@ function ProductDetailPage() {
                   width={200}
                   height={150}
                   loading="lazy"
+                  decoding="async"
                   className="aspect-[4/3] w-full object-cover"
                 />
               </button>
@@ -297,6 +332,7 @@ function ProductDetailPage() {
                 width={120}
                 height={90}
                 loading="lazy"
+                decoding="async"
                 className="h-20 w-28 shrink-0 rounded-lg object-cover"
               />
               <div>

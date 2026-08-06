@@ -41,9 +41,9 @@ export const Route = createFileRoute("/calculator")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/calculator" },
+      { property: "og:url", content: "https://hemanttilesandbuildingmaterial.lovable.app/calculator" },
     ],
-    links: [{ rel: "canonical", href: "/calculator" }],
+    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/calculator" }],
   }),
   component: CalculatorPage,
 });

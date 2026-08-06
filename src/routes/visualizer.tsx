@@ -34,9 +34,9 @@ export const Route = createFileRoute("/visualizer")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/visualizer" },
+      { property: "og:url", content: "https://hemanttilesandbuildingmaterial.lovable.app/visualizer" },
     ],
-    links: [{ rel: "canonical", href: "/visualizer" }],
+    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/visualizer" }],
   }),
   component: VisualizerPage,
 });
@@ -431,6 +431,7 @@ function VisualizerPage() {
                         src={s.image}
                         alt={s.name}
                         loading="lazy"
+                        decoding="async"
                         className="h-16 w-full object-cover"
                       />
                       <span className="block px-2 py-1.5 text-[0.7rem] leading-tight text-foreground">
