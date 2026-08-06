@@ -33,6 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getProduct, products } from "@/lib/products";
+import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/products/$productId")({
