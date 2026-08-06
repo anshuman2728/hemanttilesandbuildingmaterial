@@ -542,11 +542,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
       <PremiumLoader />
       <ScrollProgress />
       <CursorGlow />
       <Header />
-      <main className={cn("flex-1", !isHome && "pt-20")}>
+      <main id="main" className={cn("flex-1", !isHome && "pt-20")}>
         <Outlet />
       </main>
       <Footer />
