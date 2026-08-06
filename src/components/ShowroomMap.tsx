@@ -30,7 +30,6 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
                 title="Hemant Tiles and Building Materials on Google Maps"
                 src={BUSINESS.mapEmbed}
                 loading="lazy"
-                decoding="async"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-[320px] w-full border-0 sm:h-[440px] lg:h-full"
                 allowFullScreen

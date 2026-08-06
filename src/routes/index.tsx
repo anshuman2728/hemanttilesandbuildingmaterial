@@ -880,7 +880,6 @@ function ShowroomSection() {
               title="Hemant Tiles and Building Materials on Google Maps"
               src={MAPS_EMBED}
               loading="lazy"
-              decoding="async"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-[26rem] w-full lg:h-full lg:min-h-[30rem]"
             />

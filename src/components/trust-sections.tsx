@@ -491,7 +491,6 @@ export function LuxuryContact() {
               title="Hemant Tiles and Building Materials on Google Maps"
               src={BUSINESS.mapEmbed}
               loading="lazy"
-              decoding="async"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-[26rem] w-full lg:h-[40rem]"
             />
