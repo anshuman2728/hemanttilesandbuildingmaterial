@@ -19,9 +19,9 @@ export const Route = createFileRoute("/about")({
         content:
           "Trusted supplier of tiles, granite, and washroom appliances in Tengdamod, Varanasi.",
       },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: "https://hemanttilesandbuildingmaterial.lovable.app/about" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/about" }],
   }),
   component: AboutPage,
 });

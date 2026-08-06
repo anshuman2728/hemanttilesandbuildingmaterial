@@ -52,9 +52,9 @@ export const Route = createFileRoute("/contact")({
         content:
           "Get in touch with Hemant Tiles and Building Materials in Tengdamod, Varanasi.",
       },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: "https://hemanttilesandbuildingmaterial.lovable.app/contact" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/contact" }],
   }),
   component: ContactPage,
 });

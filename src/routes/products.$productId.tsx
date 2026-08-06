@@ -62,7 +62,7 @@ export const Route = createFileRoute("/products/$productId")({
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `/products/${product.id}` }],
+      links: [{ rel: "canonical", href: `https://hemanttilesandbuildingmaterial.lovable.app/products/${product.id}` }],
     };
   },
   notFoundComponent: ProductNotFound,

@@ -34,9 +34,9 @@ export const Route = createFileRoute("/visualizer")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/visualizer" },
+      { property: "og:url", content: "https://hemanttilesandbuildingmaterial.lovable.app/visualizer" },
     ],
-    links: [{ rel: "canonical", href: "/visualizer" }],
+    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/visualizer" }],
   }),
   component: VisualizerPage,
 });

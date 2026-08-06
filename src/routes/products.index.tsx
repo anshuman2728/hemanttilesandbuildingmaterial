@@ -25,9 +25,9 @@ export const Route = createFileRoute("/products/")({
         content:
           "Browse our range of tiles, granite, and washroom appliances in Varanasi.",
       },
-      { property: "og:url", content: "/products" },
+      { property: "og:url", content: "https://hemanttilesandbuildingmaterial.lovable.app/products" },
     ],
-    links: [{ rel: "canonical", href: "/products" }],
+    links: [{ rel: "canonical", href: "https://hemanttilesandbuildingmaterial.lovable.app/products" }],
   }),
   component: ProductsPage,
 });
