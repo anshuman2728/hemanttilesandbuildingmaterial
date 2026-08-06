@@ -431,6 +431,7 @@ function VisualizerPage() {
                         src={s.image}
                         alt={s.name}
                         loading="lazy"
+                        decoding="async"
                         className="h-16 w-full object-cover"
                       />
                       <span className="block px-2 py-1.5 text-[0.7rem] leading-tight text-foreground">

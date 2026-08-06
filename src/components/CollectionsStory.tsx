@@ -63,6 +63,7 @@ function QuickView({
             src={item.image}
             alt={item.title}
             loading="lazy"
+            decoding="async"
             width={1280}
             height={1600}
             className="h-64 w-full object-cover md:h-full"
@@ -203,6 +204,7 @@ export function MaterialChapters({
                   src={ch.image}
                   alt={`${ch.title} collection`}
                   loading="lazy"
+                  decoding="async"
                   width={1280}
                   height={1600}
                   className="aspect-[4/5] w-full object-cover transition-transform duration-[1600ms] ease-out hover:scale-105"
@@ -241,6 +243,7 @@ export function MaterialChapters({
                           alt=""
                           aria-hidden="true"
                           loading="lazy"
+                          decoding="async"
                           className="h-14 w-14 shrink-0 rounded-md object-cover"
                         />
                         <span className="min-w-0">
@@ -433,6 +436,7 @@ export function CollectionsExplorer({
                     src={c.image}
                     alt={c.title}
                     loading="lazy"
+                    decoding="async"
                     width={1280}
                     height={1600}
                     className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"

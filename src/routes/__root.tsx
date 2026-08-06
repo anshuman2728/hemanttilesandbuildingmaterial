@@ -269,7 +269,7 @@ function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-9 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
           {NAV.map((n) => (
             <div
               key={n.to}
@@ -361,7 +361,7 @@ function Header() {
 
       {/* mobile drawer */}
       {open && (
-        <div className="border-t border-border bg-background px-4 py-5 lg:hidden">
+        <nav aria-label="Mobile" className="border-t border-border bg-background px-4 py-5 lg:hidden">
           <div className="flex flex-col gap-4">
             {NAV.map((n) => (
               <Link

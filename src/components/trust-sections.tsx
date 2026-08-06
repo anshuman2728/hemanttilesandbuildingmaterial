@@ -144,6 +144,7 @@ export function ProjectGallery() {
                     src={p.src}
                     alt={p.alt}
                     loading="lazy"
+                    decoding="async"
                     className={cn(
                       "w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110",
                       p.tall ? "aspect-[3/4]" : "aspect-square",
@@ -369,6 +370,7 @@ export function ReviewsCarousel() {
                       src={r.photo}
                       alt={r.name}
                       loading="lazy"
+                      decoding="async"
                       width={640}
                       height={640}
                       className="h-32 w-32 rounded-lg object-cover sm:h-36 sm:w-36"
@@ -489,6 +491,7 @@ export function LuxuryContact() {
               title="Hemant Tiles and Building Materials on Google Maps"
               src={BUSINESS.mapEmbed}
               loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-[26rem] w-full lg:h-[40rem]"
             />

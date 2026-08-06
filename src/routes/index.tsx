@@ -407,6 +407,7 @@ function SpaceJourney() {
             src={s.image}
             alt={`${s.label} finished with premium tiles`}
             loading="lazy"
+            decoding="async"
             width={1280}
             height={1600}
             className={cn(
@@ -482,6 +483,7 @@ function Categories() {
                     src={c.image}
                     alt={c.title}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
                   />
                 </div>
@@ -559,6 +561,7 @@ function BrowseBySpace() {
                     src={s.image}
                     alt={s.label}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
                   />
                   <span className="absolute inset-0 bg-gradient-to-t from-ink/85 to-transparent" />
@@ -657,6 +660,7 @@ function InspirationGallery() {
                   src={g.src}
                   alt={g.alt}
                   loading="lazy"
+                  decoding="async"
                   className={cn(
                     "w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110",
                     g.tall ? "aspect-[3/4]" : "aspect-square",
@@ -876,6 +880,7 @@ function ShowroomSection() {
               title="Hemant Tiles and Building Materials on Google Maps"
               src={MAPS_EMBED}
               loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-[26rem] w-full lg:h-full lg:min-h-[30rem]"
             />
@@ -923,6 +928,7 @@ function FinalCta() {
           alt=""
           aria-hidden="true"
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </Parallax>

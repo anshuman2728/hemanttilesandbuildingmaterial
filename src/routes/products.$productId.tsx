@@ -172,6 +172,7 @@ function ProductDetailPage() {
                   width={200}
                   height={150}
                   loading="lazy"
+                  decoding="async"
                   className="aspect-[4/3] w-full object-cover"
                 />
               </button>
@@ -331,6 +332,7 @@ function ProductDetailPage() {
                 width={120}
                 height={90}
                 loading="lazy"
+                decoding="async"
                 className="h-20 w-28 shrink-0 rounded-lg object-cover"
               />
               <div>

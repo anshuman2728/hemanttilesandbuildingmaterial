@@ -38,6 +38,7 @@ export function BeforeAfter({
         src={after}
         alt={afterAlt}
         loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div
@@ -48,6 +49,7 @@ export function BeforeAfter({
           src={before}
           alt={beforeAlt}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover saturate-50 brightness-75"
         />
       </div>
