@@ -269,6 +269,8 @@ function Hero() {
           alt="Luxury interior with polished large-format stone floor tiles"
           width={1920}
           height={1200}
+          fetchPriority="high"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </div>
