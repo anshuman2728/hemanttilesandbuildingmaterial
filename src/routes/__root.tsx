@@ -380,7 +380,7 @@ function Header() {
               <Phone className="h-4 w-4" /> Call {PHONE}
             </a>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
