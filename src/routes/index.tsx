@@ -341,7 +341,7 @@ const calcPoints = [
 
 function SmartCalculator() {
   return (
-    <section id="calculator" className="bg-secondary py-24 sm:py-32">
+    <section id="calculator" className="bg-background py-24 sm:py-32">
       <div className="container mx-auto grid gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
         <div>
           <SectionHead
