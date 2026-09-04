@@ -46,7 +46,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-medium text-ink transition-opacity hover:opacity-90"
+            className="btn btn-primary"
           >
             Go home
           </Link>
@@ -76,13 +76,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-medium text-ink"
+            className="btn btn-primary"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-full border border-input bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="btn btn-secondary"
           >
             Go home
           </a>
@@ -303,7 +303,7 @@ function Header() {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-ink transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
+            className="btn btn-primary hidden !px-5 !py-3 sm:inline-flex"
           >
             <WhatsAppIcon className="h-3.5 w-3.5" />
             Get Quote
@@ -375,7 +375,7 @@ function Header() {
             ))}
             <a
               href={`tel:${PHONE.replace(/\s/g, "")}`}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-medium text-ink"
+              className="btn btn-primary mt-2"
             >
               <Phone className="h-4 w-4" /> Call {PHONE}
             </a>
@@ -399,7 +399,7 @@ function Footer() {
         <div className="grid gap-8 border-b border-white/10 py-16 lg:grid-cols-[1.5fr_auto] lg:items-end">
           <div>
             <span className="eyebrow text-gold">Let's begin your space</span>
-            <p className="mt-5 max-w-2xl font-display text-3xl leading-[1.1] sm:text-5xl">
+            <p className="display-section mt-5 max-w-2xl">
               Every space begins with a{" "}
               <span className="italic text-gold">surface.</span>
             </p>
@@ -411,13 +411,13 @@ function Footer() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+              className="btn btn-primary"
             >
               <WhatsAppIcon className="h-4 w-4" /> Free Quote
             </a>
             <Link
               to="/calculator"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-medium text-ink-foreground transition-colors duration-300 hover:bg-white hover:text-ink"
+              className="btn btn-secondary-dark"
             >
               Calculate Tiles
             </Link>

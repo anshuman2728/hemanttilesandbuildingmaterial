@@ -69,7 +69,7 @@ export function CtaBanner({
                 href={whatsappLink(whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                className="btn btn-primary group"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 {primaryLabel}

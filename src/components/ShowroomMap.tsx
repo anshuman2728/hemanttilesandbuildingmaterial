@@ -96,7 +96,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
                   href={BUSINESS.directions}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
+                  className="btn btn-primary flex-1"
                 >
                   <Navigation className="h-4 w-4" />
                   Get directions
@@ -107,7 +107,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                  className="btn btn-secondary flex-1"
                 >
                   <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
                   Book a visit
