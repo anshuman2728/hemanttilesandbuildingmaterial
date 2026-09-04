@@ -190,7 +190,7 @@ export function RoomExplorer() {
                   <Link
                     to="/products/$productId"
                     params={{ productId: r.productId }}
-                    className="btn btn-secondary-dark mt-5 !px-5 !py-3"
+                    className="mt-5 inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.22em] text-gold transition-colors duration-500 hover:text-white"
                   >
                     Explore
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
