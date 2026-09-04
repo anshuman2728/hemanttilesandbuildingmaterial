@@ -97,16 +97,33 @@ export const materialReasons = [
   },
 ];
 
-/* ------------------------------ room explorer ----------------------------- */
+/* ------------------------- explore by space (rooms) ----------------------- */
+
+export interface FeaturedPick {
+  name: string;
+  price: string;
+  productId: "tiles" | "granite" | "washroom";
+}
 
 export interface Room {
   id: string;
   label: string;
   image: string;
+  /** Short line shown on the card. */
   note: string;
+  /** Editorial paragraph shown in the detail view. */
+  description: string;
   /** Product route this room maps to. */
   productId: "tiles" | "granite" | "washroom";
+  /** Quick chips revealed on hover. */
   picks: string[];
+  recommendedTiles: string[];
+  recommendedFinishes: string[];
+  recommendedSizes: string[];
+  matchingMaterials: string[];
+  featured: FeaturedPick[];
+  /** Matches ProjectShot.category in @/lib/trust for completed work. */
+  projectCategory: "Bathrooms" | "Kitchens" | "Hotels" | "Homes" | "Commercial";
 }
 
 export const rooms: Room[] = [
@@ -115,96 +132,200 @@ export const rooms: Room[] = [
     label: "Bathroom",
     image: bathroomImg,
     note: "Anti-skid floors, tall wall tiles and matching bathware.",
+    description:
+      "A bathroom is decided by grip and light. We pair certified anti-skid floors with full-height wall tiles, then match the sanitaryware and CP fittings in the same visit.",
     productId: "washroom",
     picks: ["Anti-skid floor tiles", "Designer wall tiles", "Wall hung WC"],
+    recommendedTiles: ["Wall tiles", "Anti-skid floor tiles", "Highlighters"],
+    recommendedFinishes: ["Anti-skid", "Matte", "Digital print"],
+    recommendedSizes: ["1×2 ft (300×600 mm)", "1×1 ft (300×300 mm)", "2×2 ft (600×600 mm)"],
+    matchingMaterials: ["Granite counter", "Marble vanity top", "Sanitary ware", "Faucets"],
+    featured: [
+      { name: "Wall tile (digital print)", price: "₹38 – ₹80 / sq. ft.", productId: "tiles" },
+      { name: "Wall-hung WC + seat", price: "₹6,500 – ₹18,000", productId: "washroom" },
+      { name: "Health faucet set", price: "₹450 – ₹1,600", productId: "washroom" },
+    ],
+    projectCategory: "Bathrooms",
   },
   {
     id: "kitchen",
     label: "Kitchen",
     image: kitchenImg,
     note: "Stain-proof granite platforms with easy-clean highlighter walls.",
+    description:
+      "Kitchens live on the platform. Mirror-polished granite cut to your drawing, with a wipe-clean highlighter wall behind it and a matte floor that hides everyday traffic.",
     productId: "granite",
     picks: ["Black granite platform", "Kitchen wall tiles", "Sink faucet"],
+    recommendedTiles: ["Kitchen wall tiles", "Matte floor tiles", "Highlighters"],
+    recommendedFinishes: ["Polished", "Matte", "Glossy"],
+    recommendedSizes: ["2 ft wide platform strip", "1×2 ft wall", "2×2 ft floor"],
+    matchingMaterials: ["Black granite", "Marble", "Sink faucets"],
+    featured: [
+      { name: "Kitchen platform strip", price: "₹130 – ₹220 / sq. ft.", productId: "granite" },
+      { name: "Black granite", price: "₹110 – ₹190 / sq. ft.", productId: "granite" },
+      { name: "Pillar cock / basin tap", price: "₹450 – ₹2,800", productId: "washroom" },
+    ],
+    projectCategory: "Kitchens",
   },
   {
     id: "living",
     label: "Living Room",
     image: livingImg,
     note: "Large-format glossy floors that carry light across the room.",
+    description:
+      "The living room is where format matters most. Fewer joints, more reflection — large glossy vitrified slabs make the space read as one continuous surface.",
     productId: "tiles",
     picks: ["2×4 ft glossy vitrified", "Marble finish tiles", "Feature wall"],
+    recommendedTiles: ["Large format slab tiles", "Marble-look vitrified", "Feature wall tiles"],
+    recommendedFinishes: ["Glossy", "Polished", "Carving / textured"],
+    recommendedSizes: ["2×4 ft (600×1200 mm)", "2×2 ft (600×600 mm)", "800×1600 mm"],
+    matchingMaterials: ["Italian marble", "Granite skirting"],
+    featured: [
+      { name: "Large format slab tile", price: "₹95 – ₹180 / sq. ft.", productId: "tiles" },
+      { name: "Double charge vitrified", price: "₹70 – ₹120 / sq. ft.", productId: "tiles" },
+      { name: "Marble finish flooring", price: "₹180 / sq. ft. onwards", productId: "granite" },
+    ],
+    projectCategory: "Homes",
   },
   {
     id: "bedroom",
     label: "Bedroom",
     image: bedroomImg,
     note: "Warm wooden-finish surfaces with a soft matte touch.",
+    description:
+      "Bedrooms want warmth underfoot. Wood-finish planks and soft matte vitrified keep glare down, with matching skirting to finish the edges cleanly.",
     productId: "tiles",
     picks: ["Wooden finish tiles", "Matte vitrified", "Skirting"],
+    recommendedTiles: ["Wood-finish tiles", "Matte vitrified", "Skirting tiles"],
+    recommendedFinishes: ["Wood finish", "Matte", "Carving / textured"],
+    recommendedSizes: ["2×2 ft (600×600 mm)", "1×4 ft plank", "2×4 ft (600×1200 mm)"],
+    matchingMaterials: ["Granite door frames", "Marble window sills"],
+    featured: [
+      { name: "Wood-finish vitrified tile", price: "₹62 / sq. ft. onwards", productId: "tiles" },
+      { name: "Vitrified tile (GVT)", price: "₹55 – ₹95 / sq. ft.", productId: "tiles" },
+      { name: "Granite skirting / frames", price: "₹85 – ₹140 / sq. ft.", productId: "granite" },
+    ],
+    projectCategory: "Homes",
   },
   {
     id: "outdoor",
     label: "Outdoor",
     image: outdoorImg,
     note: "Weather-tested paving with real grip underfoot.",
+    description:
+      "Outside, the surface has to survive sun, rain and grit. Full-body stone-finish paving holds its texture and colour season after season.",
     productId: "tiles",
     picks: ["Anti-skid outdoor tiles", "Stone finish paving", "Elevation tiles"],
+    recommendedTiles: ["Outdoor paving tiles", "Elevation tiles", "Stone-finish tiles"],
+    recommendedFinishes: ["Anti-skid", "Rustic matte", "Stone texture"],
+    recommendedSizes: ["1×1 ft (300×300 mm)", "2×2 ft (600×600 mm)"],
+    matchingMaterials: ["Granite steps", "Kota / natural stone"],
+    featured: [
+      { name: "Anti-skid outdoor tile", price: "₹42 / sq. ft. onwards", productId: "tiles" },
+      { name: "Grey granite steps", price: "₹85 – ₹140 / sq. ft.", productId: "granite" },
+      { name: "Adhesive + grout", price: "On request", productId: "tiles" },
+    ],
+    projectCategory: "Homes",
   },
   {
     id: "balcony",
     label: "Balcony",
     image: balconyImg,
     note: "Compact formats and slip-safe finishes for open edges.",
+    description:
+      "Balconies are small, wet and visible from inside. Compact rustic formats grip well when it rains and still tie into the adjoining room.",
     productId: "tiles",
     picks: ["Balcony tiles", "Rustic matte tiles", "Waterproofing"],
+    recommendedTiles: ["Rustic matte tiles", "Anti-skid tiles", "Wood-finish tiles"],
+    recommendedFinishes: ["Anti-skid", "Rustic matte", "Wood finish"],
+    recommendedSizes: ["1×1 ft (300×300 mm)", "1×2 ft (300×600 mm)"],
+    matchingMaterials: ["Granite railing coping"],
+    featured: [
+      { name: "Ceramic anti-skid tile", price: "₹32 – ₹55 / sq. ft.", productId: "tiles" },
+      { name: "Wood-finish balcony tile", price: "₹62 / sq. ft. onwards", productId: "tiles" },
+      { name: "Waterproofing + grout", price: "On request", productId: "tiles" },
+    ],
+    projectCategory: "Homes",
   },
   {
     id: "terrace",
     label: "Terrace",
     image: terraceImg,
     note: "Heat-reflective, rain-ready surfaces built for full sun.",
+    description:
+      "A terrace takes the harshest load in Varanasi. Lighter, heat-reflective bodies with a coarse grip keep it usable through summer and monsoon.",
     productId: "tiles",
     picks: ["Terrace tiles", "Cool roof tiles", "Anti-skid paving"],
+    recommendedTiles: ["Terrace / cool roof tiles", "Anti-skid paving", "Elevation tiles"],
+    recommendedFinishes: ["Anti-skid", "Matte", "Stone texture"],
+    recommendedSizes: ["1×1 ft (300×300 mm)", "2×2 ft (600×600 mm)"],
+    matchingMaterials: ["Granite coping", "Stone paving"],
+    featured: [
+      { name: "Terrace anti-skid tile", price: "₹38 / sq. ft. onwards", productId: "tiles" },
+      { name: "Stone-finish paving", price: "₹52 / sq. ft. onwards", productId: "tiles" },
+      { name: "Granite coping strip", price: "₹95 – ₹165 / sq. ft.", productId: "granite" },
+    ],
+    projectCategory: "Hotels",
   },
   {
     id: "office",
     label: "Office",
     image: officeImg,
     note: "Uniform double-charge floors that survive chair castors.",
+    description:
+      "Offices need one shade across hundreds of boxes. Double-charge vitrified holds calibration and takes castor traffic without dulling.",
     productId: "tiles",
     picks: ["Double charge vitrified", "Granite reception top", "Bulk pricing"],
+    recommendedTiles: ["Double charge vitrified", "Full-body porcelain", "Wall cladding"],
+    recommendedFinishes: ["Polished", "Matte", "Glossy"],
+    recommendedSizes: ["2×2 ft (600×600 mm)", "2×4 ft (600×1200 mm)"],
+    matchingMaterials: ["Granite reception counter", "Marble lobby"],
+    featured: [
+      { name: "Double charge vitrified", price: "₹70 – ₹120 / sq. ft.", productId: "tiles" },
+      { name: "Granite reception top", price: "₹130 – ₹220 / sq. ft.", productId: "granite" },
+      { name: "Washroom package", price: "₹450 onwards", productId: "washroom" },
+    ],
+    projectCategory: "Commercial",
   },
   {
     id: "commercial",
     label: "Commercial",
     image: commercialImg,
     note: "Scale, shade consistency and project rates.",
+    description:
+      "For showrooms, hotels and hospitals we quote on drawings — single-batch supply, staged site delivery and project rates for bulk sanitaryware.",
     productId: "tiles",
     picks: ["Heavy-duty vitrified", "Bulk sanitaryware", "Project quotation"],
+    recommendedTiles: ["Heavy-duty vitrified", "Large format slabs", "Anti-skid service areas"],
+    recommendedFinishes: ["Polished", "Matte", "Anti-skid"],
+    recommendedSizes: ["2×2 ft (600×600 mm)", "2×4 ft (600×1200 mm)", "800×1600 mm"],
+    matchingMaterials: ["Granite", "Italian marble", "Bulk sanitary ware"],
+    featured: [
+      { name: "Heavy-duty vitrified", price: "₹70 – ₹120 / sq. ft.", productId: "tiles" },
+      { name: "Italian marble lobby", price: "₹180 / sq. ft. onwards", productId: "granite" },
+      { name: "Bulk CP fittings", price: "Project rates", productId: "washroom" },
+    ],
+    projectCategory: "Commercial",
   },
   {
     id: "parking",
     label: "Parking",
     image: parkingImg,
     note: "High-abrasion tiles that take vehicle load and grit.",
+    description:
+      "Parking floors face point loads and grit. Heavy-duty matte bodies with a deep texture resist abrasion and stay grippy when wet.",
     productId: "tiles",
     picks: ["Parking tiles", "Heavy duty matte", "Grout + adhesive"],
-  },
-  {
-    id: "wall-tiles",
-    label: "Wall Tiles",
-    image: wallTilesImg,
-    note: "Highlighters, 3D relief panels and full-height ceramic.",
-    productId: "tiles",
-    picks: ["Designer wall tiles", "3D relief tiles", "Highlighters"],
-  },
-  {
-    id: "floor-tiles",
-    label: "Floor Tiles",
-    image: floorTilesImg,
-    note: "Glossy, matte and carving finishes in every large format.",
-    productId: "tiles",
-    picks: ["Glossy vitrified", "Matte vitrified", "Marble finish"],
+    recommendedTiles: ["Parking tiles", "Heavy-duty matte", "Anti-skid tiles"],
+    recommendedFinishes: ["Heavy-duty matte", "Anti-skid", "Stone texture"],
+    recommendedSizes: ["1×1 ft (300×300 mm)", "2×2 ft (600×600 mm)"],
+    matchingMaterials: ["Granite kerb / ramp edging"],
+    featured: [
+      { name: "Parking tile (heavy duty)", price: "₹42 / sq. ft. onwards", productId: "tiles" },
+      { name: "Granite ramp edging", price: "₹85 – ₹140 / sq. ft.", productId: "granite" },
+      { name: "Adhesive + grout", price: "On request", productId: "tiles" },
+    ],
+    projectCategory: "Commercial",
   },
 ];
 
