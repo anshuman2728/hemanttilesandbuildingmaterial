@@ -62,7 +62,7 @@ function Head({
       </Reveal>
       <h2
         className={cn(
-          "mt-5 font-display text-3xl leading-[1.12] sm:text-5xl",
+          "display-section mt-5",
           invert ? "text-white" : "text-foreground",
         )}
       >
@@ -72,7 +72,7 @@ function Head({
         <Reveal delay={150}>
           <p
             className={cn(
-              "mt-5 text-sm leading-relaxed sm:text-base",
+              "lede mt-6",
               invert ? "text-white/65" : "text-muted-foreground",
             )}
           >
@@ -102,7 +102,7 @@ export function ProjectGallery() {
   }, []);
 
   return (
-    <section id="projects" className="bg-ink py-24 sm:py-32">
+    <section id="projects" className="bg-ink py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow="Project gallery"
@@ -137,7 +137,7 @@ export function ProjectGallery() {
               <Reveal key={p.title} direction="zoom">
                 <button
                   onClick={() => setOpen(index)}
-                  className="group relative block w-full overflow-hidden rounded-lg text-left"
+                  className="group relative block w-full overflow-hidden rounded-sm text-left"
                   aria-label={`Enlarge: ${p.title}`}
                 >
                   <img
@@ -181,14 +181,14 @@ export function ProjectGallery() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/calculator"
-                  className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                  className="btn btn-primary"
                 >
                   Estimate my material
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   to="/products"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-white transition-colors duration-300 hover:border-gold hover:text-gold"
+                  className="btn btn-secondary-dark"
                 >
                   Browse finishes
                 </Link>
@@ -254,7 +254,7 @@ const pillarIcons = {
 
 export function WhyChooseUsAnimated() {
   return (
-    <section className="bg-secondary py-24 sm:py-32">
+    <section className="bg-secondary py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow="Why choose us"
@@ -345,7 +345,7 @@ export function ReviewsCarousel() {
 
   return (
     <section
-      className="overflow-hidden bg-ink py-24 sm:py-32"
+      className="overflow-hidden bg-ink py-28 sm:py-40"
       onMouseEnter={() => (paused.current = true)}
       onMouseLeave={() => (paused.current = false)}
     >
@@ -442,7 +442,7 @@ export function ReviewsCarousel() {
 
 export function FaqSection() {
   return (
-    <section className="bg-background py-24 sm:py-32">
+    <section className="bg-background py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head eyebrow="Good to know" title="Frequently asked." center />
         <Reveal delay={120} className="mx-auto mt-14 max-w-3xl">
@@ -477,7 +477,7 @@ export function FaqSection() {
 
 export function LuxuryContact() {
   return (
-    <section id="contact" className="relative bg-secondary py-24 sm:py-32">
+    <section id="contact" className="relative bg-secondary py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow="Visit or call"
@@ -534,7 +534,7 @@ export function LuxuryContact() {
               <div className="mt-8 grid gap-3">
                 <a
                   href={BUSINESS.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                  className="btn btn-primary"
                 >
                   <Phone className="h-4 w-4" />
                   Call now
@@ -545,7 +545,7 @@ export function LuxuryContact() {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-foreground transition-colors duration-300 hover:border-gold hover:text-gold"
+                  className="btn btn-secondary"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   WhatsApp us
@@ -554,7 +554,7 @@ export function LuxuryContact() {
                   href={BUSINESS.directions}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-gold"
+                  className="btn btn-utility"
                 >
                   <Navigation className="h-4 w-4" />
                   Get directions

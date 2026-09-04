@@ -185,7 +185,7 @@ export function FloatingActions() {
       </a>
 
       {open && (
-        <div className="w-72 overflow-hidden rounded-xl border border-border bg-card shadow-luxe">
+        <div className="w-72 overflow-hidden rounded-sm border border-border bg-card shadow-luxe">
           <div className="border-b border-border px-4 py-3">
             <p className="font-display text-base text-foreground">
               How can we help?

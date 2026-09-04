@@ -95,7 +95,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-luxe sm:p-7">
+    <div className="rounded-sm border border-border bg-card p-6 shadow-luxe sm:p-7">
       <div className="flex items-center gap-3">
         <span className="grid h-8 w-8 place-items-center rounded-full border border-gold/40 text-xs text-gold">
           {step}

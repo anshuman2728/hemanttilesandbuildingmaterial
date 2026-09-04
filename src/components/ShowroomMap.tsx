@@ -25,7 +25,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-stretch">
           <Reveal direction="left" className="h-full">
-            <div className="h-full overflow-hidden rounded-2xl border border-border shadow-luxe">
+            <div className="h-full overflow-hidden rounded-sm border border-border shadow-luxe">
               <iframe
                 title="Hemant Tiles and Building Materials on Google Maps"
                 src={BUSINESS.mapEmbed}
@@ -38,7 +38,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
           </Reveal>
 
           <Reveal direction="right">
-            <div className="flex h-full flex-col gap-6 rounded-2xl border border-border bg-card p-7 shadow-luxe">
+            <div className="flex h-full flex-col gap-6 rounded-sm border border-border bg-card p-7 shadow-luxe">
               <div>
                 <p className="font-display text-2xl">{BUSINESS.name}</p>
                 <p className="mt-1 text-xs uppercase tracking-[0.24em] text-gold">
@@ -71,7 +71,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
                 </li>
               </ul>
 
-              <div className="rounded-xl border border-border bg-secondary/60 p-4">
+              <div className="rounded-sm border border-border bg-secondary/60 p-4">
                 <div className="flex items-center gap-2 text-foreground">
                   <Clock className="h-4 w-4 text-gold" />
                   <span className="text-xs uppercase tracking-[0.2em]">
@@ -96,7 +96,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
                   href={BUSINESS.directions}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
+                  className="btn btn-primary flex-1"
                 >
                   <Navigation className="h-4 w-4" />
                   Get directions
@@ -107,7 +107,7 @@ export function ShowroomMap({ heading = true }: { heading?: boolean }) {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                  className="btn btn-secondary flex-1"
                 >
                   <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
                   Book a visit

@@ -190,7 +190,7 @@ export function MaterialChapters({
           key={ch.id}
           id={ch.id}
           className={cn(
-            "overflow-hidden py-24 sm:py-32",
+            "overflow-hidden py-28 sm:py-40",
             i % 2 === 0 ? "bg-background" : "bg-secondary",
           )}
         >
@@ -324,7 +324,7 @@ export function CollectionsExplorer({
   }, [query, active]);
 
   return (
-    <section id="collections-explorer" className="bg-ink py-24 sm:py-32">
+    <section id="collections-explorer" className="bg-ink py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>

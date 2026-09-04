@@ -80,8 +80,7 @@ function GoldButton({
   children: React.ReactNode;
   external?: boolean;
 }) {
-  const cls =
-    "group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-all duration-500 hover:gap-4 hover:brightness-110";
+  const cls = "btn btn-primary group";
   if (to)
     return (
       <Link to={to} className={cls}>
@@ -114,12 +113,7 @@ function GhostButton({
   onLight?: boolean;
   external?: boolean;
 }) {
-  const cls = cn(
-    "inline-flex items-center gap-2 rounded-full border px-7 py-3.5 text-sm font-medium transition-colors duration-500",
-    onLight
-      ? "border-foreground/25 text-foreground hover:bg-foreground hover:text-background"
-      : "border-white/35 text-white hover:bg-white hover:text-ink",
-  );
+  const cls = cn("btn", onLight ? "btn-secondary" : "btn-secondary-dark");
   if (to)
     return (
       <Link to={to} className={cls}>
@@ -157,7 +151,7 @@ function SectionHead({
       </Reveal>
       <h2
         className={cn(
-          "mt-5 text-3xl leading-[1.1] sm:text-4xl md:text-5xl",
+          "display-section mt-6",
           invert ? "text-ink-foreground" : "text-foreground",
         )}
       >
@@ -167,7 +161,7 @@ function SectionHead({
         <Reveal delay={120}>
           <p
             className={cn(
-              "mt-5 text-base leading-relaxed",
+              "lede mt-6",
               invert ? "text-ink-foreground/70" : "text-muted-foreground",
             )}
           >
@@ -234,23 +228,23 @@ function Hero() {
           <span className="eyebrow text-gold">Ramnagar, Varanasi · Since 2004</span>
         </Reveal>
 
-        <h1 className="mt-7 max-w-4xl font-display text-[2.6rem] leading-[1.02] text-white sm:text-6xl lg:text-[5.1rem]">
+        <h1 className="display-hero mt-8 max-w-5xl text-white">
           <SplitHeading text="Every Space Begins" />
           <br className="hidden sm:block" />
           <SplitHeading text="With a Surface." delay={260} wordClassName="italic text-gold" />
         </h1>
 
         <Reveal delay={520}>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+          <p className="lede mt-8 max-w-xl text-white/75">
             Crafting premium spaces with luxury tiles, granite, marble, and
             sanitary solutions.
           </p>
         </Reveal>
 
         <Reveal delay={640}>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <GoldButton to="/products">Explore Collection</GoldButton>
-            <GhostButton to="/contact">Get Quote</GhostButton>
+          <div className="mt-12 flex flex-wrap gap-3">
+            <GoldButton to="/contact">Get a Quote</GoldButton>
+            <GhostButton to="/products">Explore Collection</GhostButton>
           </div>
         </Reveal>
       </div>
@@ -275,7 +269,7 @@ function Hero() {
 
 function Categories() {
   return (
-    <section id="collections" className="bg-background py-24 sm:py-32">
+    <section id="collections" className="bg-background py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHead
           eyebrow="Collections"
@@ -283,13 +277,13 @@ function Categories() {
           body="Five curated departments, each stocked with the brands and finishes Varanasi builds with."
         />
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {categoryGroups.map((c, i) => (
             <Reveal key={c.id} delay={i * 90} className={cn(i === 0 && "lg:col-span-2")}>
               <Link
                 to="/products/$productId"
                 params={{ productId: c.productId }}
-                className="group relative block h-full overflow-hidden rounded-lg bg-ink shadow-luxe transition-transform duration-500 hover:-translate-y-1"
+                className="group relative block h-full overflow-hidden rounded-sm bg-ink shadow-luxe transition-transform duration-700 ease-out hover:-translate-y-1.5"
               >
                 <div className={cn("overflow-hidden", i === 0 ? "aspect-[16/9]" : "aspect-[4/3]")}>
                   <img
@@ -297,13 +291,13 @@ function Categories() {
                     alt={c.title}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                    className="img-editorial group-hover:scale-105"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent opacity-90" />
 
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <h3 className="font-display text-2xl text-white sm:text-3xl">{c.title}</h3>
+                  <h3 className="display-sub text-white">{c.title}</h3>
                   <p className="mt-2 max-w-sm text-sm text-white/70">{c.blurb}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold">
                     View Collection
@@ -341,7 +335,7 @@ const calcPoints = [
 
 function SmartCalculator() {
   return (
-    <section id="calculator" className="bg-background py-24 sm:py-32">
+    <section id="calculator" className="bg-background py-28 sm:py-40">
       <div className="container mx-auto grid gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
         <div>
           <SectionHead
@@ -369,7 +363,7 @@ function SmartCalculator() {
           </ul>
 
           <Reveal delay={220}>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-12 flex flex-wrap gap-3">
               <GoldButton to="/calculator">Open Calculator</GoldButton>
               <GhostButton
                 onLight
@@ -386,7 +380,7 @@ function SmartCalculator() {
         </div>
 
         <Reveal direction="right">
-          <div className="overflow-hidden rounded-lg border border-border shadow-luxe">
+          <div className="overflow-hidden rounded-sm border border-border shadow-luxe">
             <img
               src={calcImg}
               alt="Large-format floor tiles laid in a finished room"

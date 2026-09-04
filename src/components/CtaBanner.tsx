@@ -69,7 +69,7 @@ export function CtaBanner({
                 href={whatsappLink(whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                className="btn btn-primary group"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 {primaryLabel}
@@ -78,10 +78,8 @@ export function CtaBanner({
                 <Link
                   to={secondary.to}
                   className={cn(
-                    "group inline-flex items-center gap-2 rounded-full border px-7 py-3.5 text-sm font-medium transition-colors duration-300",
-                    dark
-                      ? "border-white/25 text-ink-foreground hover:bg-white hover:text-ink"
-                      : "border-border text-foreground hover:bg-foreground hover:text-background",
+                    "btn group",
+                    dark ? "btn-secondary-dark" : "btn-secondary",
                   )}
                 >
                   {secondary.label}

@@ -11,17 +11,17 @@ export function LegacyTimeline() {
   const fill = Math.min(1, Math.max(0, (progress - 0.08) * 1.5));
 
   return (
-    <section id="legacy" className="bg-ink py-24 sm:py-32">
+    <section id="legacy" className="bg-ink py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>
             <span className="eyebrow text-gold">Our legacy</span>
           </Reveal>
-          <h2 className="mt-5 text-3xl leading-[1.1] text-ink-foreground sm:text-4xl md:text-5xl">
+          <h2 className="display-section mt-5 text-ink-foreground">
             <SplitHeading text="Two decades on the same road." />
           </h2>
           <Reveal delay={120}>
-            <p className="mt-5 text-base leading-relaxed text-ink-foreground/70">
+            <p className="lede mt-6 text-ink-foreground/70">
               Every year added a room to what we could finish for a family — and a
               reason for the next family to walk in.
             </p>
@@ -97,17 +97,17 @@ export function LegacyTimeline() {
 
 export function MaterialsMatter() {
   return (
-    <section id="materials" className="bg-background py-24 sm:py-32">
+    <section id="materials" className="bg-background py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <span className="eyebrow text-gold">Why premium materials matter</span>
           </Reveal>
-          <h2 className="mt-5 text-3xl leading-[1.1] text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="display-section mt-5 text-foreground">
             <SplitHeading text="The cheapest floor is laid twice." />
           </h2>
           <Reveal delay={120}>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            <p className="lede mt-6 text-muted-foreground">
               Six reasons the surface deserves more attention than almost anything
               else in the budget.
             </p>
@@ -138,17 +138,17 @@ export function MaterialsMatter() {
 
 export function RoomExplorer() {
   return (
-    <section id="rooms" className="bg-secondary py-24 sm:py-32">
+    <section id="rooms" className="bg-secondary py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>
             <span className="eyebrow text-gold">Explore by room</span>
           </Reveal>
-          <h2 className="mt-5 text-3xl leading-[1.1] text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="display-section mt-5 text-foreground">
             <SplitHeading text="Start where you are standing." />
           </h2>
           <Reveal delay={120}>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            <p className="lede mt-6 text-muted-foreground">
               Twelve places a surface decision has to be made. Pick one and we'll
               show you what usually works.
             </p>
@@ -158,7 +158,7 @@ export function RoomExplorer() {
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {rooms.map((r, i) => (
             <Reveal key={r.id} delay={(i % 3) * 90} direction="zoom">
-              <article className="group relative h-full overflow-hidden rounded-lg bg-ink shadow-luxe">
+              <article className="group relative h-full overflow-hidden rounded-sm bg-ink shadow-luxe transition-transform duration-700 ease-out hover:-translate-y-1">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={r.image}
@@ -190,7 +190,7 @@ export function RoomExplorer() {
                   <Link
                     to="/products/$productId"
                     params={{ productId: r.productId }}
-                    className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.2em] text-gold transition-colors duration-500 hover:bg-gold hover:text-ink"
+                    className="mt-5 inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.22em] text-gold transition-colors duration-500 hover:text-white"
                   >
                     Explore
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
