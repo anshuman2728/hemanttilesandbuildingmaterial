@@ -102,7 +102,7 @@ export function ProjectGallery() {
   }, []);
 
   return (
-    <section id="projects" className="bg-ink py-24 sm:py-32">
+    <section id="projects" className="bg-ink py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow="Project gallery"
@@ -137,7 +137,7 @@ export function ProjectGallery() {
               <Reveal key={p.title} direction="zoom">
                 <button
                   onClick={() => setOpen(index)}
-                  className="group relative block w-full overflow-hidden rounded-lg text-left"
+                  className="group relative block w-full overflow-hidden rounded-sm text-left"
                   aria-label={`Enlarge: ${p.title}`}
                 >
                   <img
@@ -254,7 +254,7 @@ const pillarIcons = {
 
 export function WhyChooseUsAnimated() {
   return (
-    <section className="bg-secondary py-24 sm:py-32">
+    <section className="bg-secondary py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow="Why choose us"
@@ -345,7 +345,7 @@ export function ReviewsCarousel() {
 
   return (
     <section
-      className="overflow-hidden bg-ink py-24 sm:py-32"
+      className="overflow-hidden bg-ink py-28 sm:py-40"
       onMouseEnter={() => (paused.current = true)}
       onMouseLeave={() => (paused.current = false)}
     >
@@ -442,7 +442,7 @@ export function ReviewsCarousel() {
 
 export function FaqSection() {
   return (
-    <section className="bg-background py-24 sm:py-32">
+    <section className="bg-background py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head eyebrow="Good to know" title="Frequently asked." center />
         <Reveal delay={120} className="mx-auto mt-14 max-w-3xl">
@@ -477,7 +477,7 @@ export function FaqSection() {
 
 export function LuxuryContact() {
   return (
-    <section id="contact" className="relative bg-secondary py-24 sm:py-32">
+    <section id="contact" className="relative bg-secondary py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
           eyebrow="Visit or call"

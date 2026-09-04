@@ -266,7 +266,7 @@ function VisualizerPage() {
         <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-start">
           {/* stage */}
           <Reveal direction="left">
-            <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-luxe">
+            <div className="overflow-hidden rounded-sm border border-border bg-card shadow-luxe">
               {!roomSrc ? (
                 <label
                   onDragOver={(e) => {
@@ -398,7 +398,7 @@ function VisualizerPage() {
                   {saved.map((d) => (
                     <figure
                       key={d.id}
-                      className="overflow-hidden rounded-xl border border-border bg-card"
+                      className="overflow-hidden rounded-sm border border-border bg-card"
                     >
                       <img src={d.url} alt={d.name} className="h-24 w-full object-cover" />
                       <figcaption className="px-2 py-1.5 text-[0.7rem] text-muted-foreground">
@@ -413,7 +413,7 @@ function VisualizerPage() {
 
           {/* controls */}
           <Reveal direction="right" className="lg:sticky lg:top-24">
-            <div className="space-y-6 rounded-2xl border border-border bg-card p-6 shadow-luxe">
+            <div className="space-y-6 rounded-sm border border-border bg-card p-6 shadow-luxe">
               <div>
                 <h2 className="font-display text-xl">Choose a surface</h2>
                 <div className="mt-4 grid grid-cols-3 gap-2">

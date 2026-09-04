@@ -142,7 +142,7 @@ function ProductDetailPage() {
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
         {/* Gallery */}
         <div>
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+          <div className="overflow-hidden rounded-sm border border-border bg-card shadow-sm">
             <img
               src={current.src}
               alt={current.alt}
@@ -187,7 +187,7 @@ function ProductDetailPage() {
           </h1>
           <p className="mt-3 text-lg text-muted-foreground">{product.details}</p>
 
-          <div className="mt-6 flex flex-wrap items-end gap-x-3 gap-y-1 rounded-xl border border-border bg-muted/40 px-5 py-4">
+          <div className="mt-6 flex flex-wrap items-end gap-x-3 gap-y-1 rounded-sm border border-border bg-muted/40 px-5 py-4">
             <span className="text-sm text-muted-foreground">Starting from</span>
             <span className="flex items-center font-display text-3xl font-bold text-foreground">
               <IndianRupee className="mr-0.5 h-6 w-6" />
@@ -285,7 +285,7 @@ function ProductDetailPage() {
         <h2 className="font-display text-2xl font-bold text-foreground">
           Sizes & indicative pricing
         </h2>
-        <div className="mt-4 overflow-hidden rounded-xl border border-border">
+        <div className="mt-4 overflow-hidden rounded-sm border border-border">
           <Table>
             <TableHeader>
               <TableRow>
@@ -324,7 +324,7 @@ function ProductDetailPage() {
               key={p.id}
               to="/products/$productId"
               params={{ productId: p.id }}
-              className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+              className="group flex items-center gap-4 rounded-sm border border-border bg-card p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
             >
               <img
                 src={p.image}

@@ -11,7 +11,7 @@ export function LegacyTimeline() {
   const fill = Math.min(1, Math.max(0, (progress - 0.08) * 1.5));
 
   return (
-    <section id="legacy" className="bg-ink py-24 sm:py-32">
+    <section id="legacy" className="bg-ink py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>
@@ -97,7 +97,7 @@ export function LegacyTimeline() {
 
 export function MaterialsMatter() {
   return (
-    <section id="materials" className="bg-background py-24 sm:py-32">
+    <section id="materials" className="bg-background py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -138,7 +138,7 @@ export function MaterialsMatter() {
 
 export function RoomExplorer() {
   return (
-    <section id="rooms" className="bg-secondary py-24 sm:py-32">
+    <section id="rooms" className="bg-secondary py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>

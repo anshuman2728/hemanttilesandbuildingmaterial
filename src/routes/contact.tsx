@@ -174,7 +174,7 @@ function ContactPage() {
             </a>
             <a
               href="mailto:hemantsingh1965@gmail.com"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-accent"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-sm border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-accent"
             >
               <Mail className="h-5 w-5" />
               Email Us
@@ -193,7 +193,7 @@ function ContactPage() {
               </p>
             </div>
           </div>
-          <div className="mt-6 overflow-hidden rounded-2xl border border-border shadow-sm">
+          <div className="mt-6 overflow-hidden rounded-sm border border-border shadow-sm">
             <iframe
               title="Hemant Tiles and Building Materials location map"
               src="https://maps.google.com/maps?q=Sankar%20Nagar%20Colony%2C%20Ram%20Nagar%20Industrial%20Area%2C%20Tengra%20mod%2C%20Ramnagar%2C%20Varanasi%2C%20Uttar%20Pradesh%20221008&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -206,7 +206,7 @@ function ContactPage() {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
+          className="space-y-6 rounded-sm border border-border bg-card p-6 shadow-sm sm:p-8"
         >
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="space-y-2">

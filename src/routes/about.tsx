@@ -70,7 +70,7 @@ function AboutPage() {
         {highlights.map((h) => (
           <div
             key={h.title}
-            className="flex gap-4 rounded-xl border border-border bg-card p-6"
+            className="flex gap-4 rounded-sm border border-border bg-card p-6"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
               <h.icon className="h-5 w-5" />
@@ -86,7 +86,7 @@ function AboutPage() {
           </div>
         ))}
       </div>
-      <div className="mt-16 rounded-2xl border border-border bg-muted/30 p-8 sm:p-12">
+      <div className="mt-16 rounded-sm border border-border bg-muted/30 p-8 sm:p-12">
         <h2 className="font-display text-2xl font-bold text-foreground">
           Visit us
         </h2>
