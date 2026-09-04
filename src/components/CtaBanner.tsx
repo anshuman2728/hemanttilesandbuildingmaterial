@@ -78,10 +78,8 @@ export function CtaBanner({
                 <Link
                   to={secondary.to}
                   className={cn(
-                    "group inline-flex items-center gap-2 rounded-full border px-7 py-3.5 text-sm font-medium transition-colors duration-300",
-                    dark
-                      ? "border-white/25 text-ink-foreground hover:bg-white hover:text-ink"
-                      : "border-border text-foreground hover:bg-foreground hover:text-background",
+                    "btn group",
+                    dark ? "btn-secondary-dark" : "btn-secondary",
                   )}
                 >
                   {secondary.label}
