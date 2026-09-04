@@ -80,8 +80,7 @@ function GoldButton({
   children: React.ReactNode;
   external?: boolean;
 }) {
-  const cls =
-    "group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-all duration-500 hover:gap-4 hover:brightness-110";
+  const cls = "btn btn-primary group";
   if (to)
     return (
       <Link to={to} className={cls}>
@@ -114,12 +113,7 @@ function GhostButton({
   onLight?: boolean;
   external?: boolean;
 }) {
-  const cls = cn(
-    "inline-flex items-center gap-2 rounded-full border px-7 py-3.5 text-sm font-medium transition-colors duration-500",
-    onLight
-      ? "border-foreground/25 text-foreground hover:bg-foreground hover:text-background"
-      : "border-white/35 text-white hover:bg-white hover:text-ink",
-  );
+  const cls = cn("btn", onLight ? "btn-secondary" : "btn-secondary-dark");
   if (to)
     return (
       <Link to={to} className={cls}>
@@ -157,7 +151,7 @@ function SectionHead({
       </Reveal>
       <h2
         className={cn(
-          "mt-5 text-3xl leading-[1.1] sm:text-4xl md:text-5xl",
+          "display-section mt-6",
           invert ? "text-ink-foreground" : "text-foreground",
         )}
       >
@@ -167,7 +161,7 @@ function SectionHead({
         <Reveal delay={120}>
           <p
             className={cn(
-              "mt-5 text-base leading-relaxed",
+              "lede mt-6",
               invert ? "text-ink-foreground/70" : "text-muted-foreground",
             )}
           >
