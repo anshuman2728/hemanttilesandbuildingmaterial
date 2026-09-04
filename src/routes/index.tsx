@@ -243,8 +243,8 @@ function Hero() {
 
         <Reveal delay={640}>
           <div className="mt-12 flex flex-wrap gap-3">
-            <GoldButton to="/products">Explore Collection</GoldButton>
-            <GhostButton to="/contact">Get Quote</GhostButton>
+            <GoldButton to="/contact">Get a Quote</GoldButton>
+            <GhostButton to="/products">Explore Collection</GhostButton>
           </div>
         </Reveal>
       </div>
