@@ -24,14 +24,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { catalogItems } from "@/lib/catalog-items";
 import { getProduct, products } from "@/lib/products";
 import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -280,34 +273,43 @@ function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Price & size table */}
+      {/* Products in this range */}
       <section className="mt-16">
         <h2 className="font-display text-2xl font-bold text-foreground">
-          Sizes & indicative pricing
+          In this range
         </h2>
-        <div className="mt-4 overflow-hidden rounded-sm border border-border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Product</TableHead>
-                <TableHead>Size</TableHead>
-                <TableHead>Finish</TableHead>
-                <TableHead className="text-right">Price</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {product.variants.map((v) => (
-                <TableRow key={v.name}>
-                  <TableCell className="font-medium">{v.name}</TableCell>
-                  <TableCell>{v.size}</TableCell>
-                  <TableCell>{v.finish}</TableCell>
-                  <TableCell className="text-right">{v.price}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {catalogItems
+            .filter((i) => i.categoryId === product.id)
+            .map((i) => (
+              <Link
+                key={i.id}
+                to="/products/item/$itemId"
+                params={{ itemId: i.id }}
+                className="group block"
+              >
+                <div className="overflow-hidden rounded-sm bg-secondary">
+                  <img
+                    src={i.image}
+                    alt={i.name}
+                    width={600}
+                    height={750}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.06]"
+                  />
+                </div>
+                <h3 className="mt-4 text-base text-foreground">{i.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{i.price}</p>
+                {i.finishes.length > 0 && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {i.finishes.join(", ")}
+                  </p>
+                )}
+              </Link>
+            ))}
         </div>
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-6 text-xs text-muted-foreground">
           Prices are indicative and subject to change. Visit the showroom or send
           an enquiry for an exact quotation.
         </p>
