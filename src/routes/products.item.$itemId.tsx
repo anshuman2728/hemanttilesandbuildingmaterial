@@ -2,7 +2,6 @@ import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Calculator, Phone } from "lucide-react";
 import {
-  catalogItems,
   getItem,
   matchingItems,
   relatedItems,
@@ -306,5 +305,3 @@ function ItemDetailPage() {
     </div>
   );
 }
-
-export const _allItems = catalogItems;
