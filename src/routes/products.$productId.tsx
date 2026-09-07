@@ -24,14 +24,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { catalogItems } from "@/lib/catalog-items";
 import { getProduct, products } from "@/lib/products";
 import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
 import { cn } from "@/lib/utils";
