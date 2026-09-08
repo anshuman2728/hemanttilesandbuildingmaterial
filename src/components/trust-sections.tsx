@@ -29,16 +29,14 @@ import { cn } from "@/lib/utils";
 import { faqs } from "@/lib/catalog";
 import { BUSINESS } from "@/lib/business";
 import { whatsappLink, WhatsAppIcon } from "@/lib/whatsapp";
+import { brandWall, reviews, trustPillars } from "@/lib/trust";
 import {
-  brandWall,
   projectCategories,
   projects,
-  reviews,
-  trustPillars,
+  type Project,
   type ProjectCategory,
-} from "@/lib/trust";
-import tilesImg from "@/assets/tiles.jpg";
-import livingImg from "@/assets/space-living.jpg";
+} from "@/lib/projects";
+import { catalogItems } from "@/lib/catalog-items";
 
 /* ------------------------------- shared bits ------------------------------- */
 
