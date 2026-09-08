@@ -160,7 +160,7 @@ function ProjectDetail({
         <img
           src={project.hero}
           alt={project.heroAlt}
-          className="w-full rounded-sm object-cover animate-in zoom-in-95"
+          className="max-h-[64vh] w-full rounded-sm object-cover animate-in zoom-in-95"
         />
 
         <span className="eyebrow mt-8 block text-gold">{project.type}</span>
