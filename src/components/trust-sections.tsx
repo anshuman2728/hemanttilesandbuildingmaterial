@@ -84,14 +84,149 @@ function Head({
 
 /* ------------------------------ project gallery ---------------------------- */
 
+const itemName = (id: string) =>
+  catalogItems.find((i) => i.id === id)?.name ?? id;
+
+const itemCategory = (id: string) =>
+  catalogItems.find((i) => i.id === id)?.categoryId;
+
+function GetThisLook({ project }: { project: Project }) {
+  const message = `Hi, I like the "${project.name}" project (${project.type}, ${project.location}) on your website. I would like the same look — please share products and prices.`;
+  return (
+    <div className="mt-10 border-t border-white/10 pt-8">
+      <span className="eyebrow text-gold">Get this look</span>
+      <p className="lede mt-3 text-white/65">
+        Every surface on this project is available from our showroom.
+      </p>
+      <ul className="mt-6 divide-y divide-white/10 border-y border-white/10">
+        {project.products.map((p) => (
+          <li key={p.role + p.itemId}>
+            <Link
+              to="/products/item/$itemId"
+              params={{ itemId: p.itemId }}
+              className="group flex items-center justify-between gap-4 py-4"
+            >
+              <span>
+                <span className="block text-[10px] uppercase tracking-[0.2em] text-gold">
+                  {p.role}
+                </span>
+                <span className="mt-1 block font-display text-lg text-white">
+                  {itemName(p.itemId)}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-white/40 transition-transform duration-500 group-hover:translate-x-1 group-hover:text-gold" />
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <a
+          href={whatsappLink(message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+        >
+          <WhatsAppIcon className="h-4 w-4" />
+          Request this look
+        </a>
+        <Link to="/products" className="btn btn-secondary-dark">
+          Browse all materials
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function ProjectDetail({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-[90] overflow-y-auto bg-ink/97 animate-in fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.name}
+    >
+      <button
+        onClick={onClose}
+        aria-label="Close project"
+        className="fixed right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-sm border border-white/25 text-white transition-colors hover:border-gold hover:text-gold"
+      >
+        <X className="h-5 w-5" />
+      </button>
+
+      <div className="mx-auto max-w-4xl px-4 pb-24 pt-16 sm:px-6">
+        <img
+          src={project.hero}
+          alt={project.heroAlt}
+          className="w-full rounded-sm object-cover animate-in zoom-in-95"
+        />
+
+        <span className="eyebrow mt-8 block text-gold">{project.type}</span>
+        <h3 className="display-sub mt-3 text-white">{project.name}</h3>
+        <p className="mt-2 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/55">
+          <MapPin className="h-3.5 w-3.5" />
+          {project.location}
+        </p>
+        <p className="lede mt-6 text-white/70">{project.story}</p>
+
+        {project.beforeAfter && (
+          <div className="mt-12">
+            <span className="eyebrow text-gold">Before / after</span>
+            <div className="mt-4">
+              <BeforeAfter {...project.beforeAfter} />
+            </div>
+          </div>
+        )}
+
+        <div className="mt-12 grid gap-3 sm:grid-cols-3">
+          {project.gallery.map((g) => (
+            <img
+              key={g.src}
+              src={g.src}
+              alt={g.alt}
+              loading="lazy"
+              decoding="async"
+              className="aspect-square w-full rounded-sm object-cover"
+            />
+          ))}
+        </div>
+
+        <div className="mt-12">
+          <span className="eyebrow text-gold">Materials used</span>
+          <ul className="mt-4 space-y-2">
+            {project.materials.map((m) => (
+              <li key={m} className="flex gap-3 text-sm text-white/70">
+                <Layers className="mt-0.5 h-4 w-4 shrink-0 text-gold/70" />
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <GetThisLook project={project} />
+      </div>
+    </div>
+  );
+}
+
 export function ProjectGallery() {
   const [filter, setFilter] = useState<ProjectCategory | "All">("All");
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
 
   const shown = useMemo(
-    () => (filter === "All" ? projects : projects.filter((p) => p.category === filter)),
+    () =>
+      filter === "All"
+        ? projects
+        : projects.filter((p) => p.category === filter),
     [filter],
   );
+
+  const current = open ? projects.find((p) => p.id === open) : undefined;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(null);
@@ -99,13 +234,22 @@ export function ProjectGallery() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    if (!current) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [current]);
+
   return (
     <section id="projects" className="bg-ink py-28 sm:py-40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Head
-          eyebrow="Project gallery"
-          title="Rooms we have surfaced."
-          body="Bathrooms, kitchens, hotels, homes and commercial floors finished with material from our showroom."
+          eyebrow="Portfolio"
+          title="Spaces We've Transformed"
+          body="Real projects. Real materials. Real spaces."
           invert
         />
 
@@ -116,7 +260,7 @@ export function ProjectGallery() {
                 key={c}
                 onClick={() => setFilter(c)}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-all duration-300",
+                  "border px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-all duration-500",
                   filter === c
                     ? "border-gold bg-gold text-ink"
                     : "border-white/20 text-white/65 hover:border-gold/60 hover:text-white",
@@ -128,113 +272,51 @@ export function ProjectGallery() {
           </div>
         </Reveal>
 
-        <div className="mt-12 columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4">
-          {shown.map((p) => {
-            const index = projects.indexOf(p);
-            return (
-              <Reveal key={p.title} direction="zoom">
-                <button
-                  onClick={() => setOpen(index)}
-                  className="group relative block w-full overflow-hidden rounded-sm text-left"
-                  aria-label={`Enlarge: ${p.title}`}
-                >
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((p) => (
+            <Reveal key={p.id}>
+              <button
+                onClick={() => setOpen(p.id)}
+                className="group block w-full text-left"
+                aria-label={`Open project: ${p.name}`}
+              >
+                <span className="block overflow-hidden rounded-sm">
                   <img
-                    src={p.src}
-                    alt={p.alt}
+                    src={p.hero}
+                    alt={p.heroAlt}
                     loading="lazy"
                     decoding="async"
                     className={cn(
-                      "w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110",
-                      p.tall ? "aspect-[3/4]" : "aspect-square",
+                      "w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-105",
+                      p.tall ? "aspect-[3/4]" : "aspect-[4/3]",
                     )}
                   />
-                  <span className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <span className="absolute inset-x-0 bottom-0 translate-y-3 p-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                    <span className="block text-[10px] uppercase tracking-[0.2em] text-gold">
-                      {p.category}
-                    </span>
-                    <span className="mt-1 block font-display text-lg leading-tight text-white">
-                      {p.title}
-                    </span>
-                    <span className="mt-1 block text-xs text-white/60">
-                      {p.material}
-                    </span>
-                  </span>
-                </button>
-              </Reveal>
-            );
-          })}
-        </div>
-
-        {/* before / after */}
-        <div className="mt-20 grid gap-12 border-t border-white/10 pt-20 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
-            <Head
-              eyebrow="Before / after"
-              title="The same room. A different life."
-              body="Drag the handle to see what a considered surface choice does to a space."
-              invert
-            />
-            <Reveal delay={180}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to="/calculator"
-                  className="btn btn-primary"
-                >
-                  Estimate my material
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/products"
-                  className="btn btn-secondary-dark"
-                >
-                  Browse finishes
-                </Link>
-              </div>
+                </span>
+                <span className="mt-5 block text-[10px] uppercase tracking-[0.2em] text-gold">
+                  {p.type}
+                </span>
+                <span className="mt-2 block font-display text-2xl leading-tight text-white">
+                  {p.name}
+                </span>
+                <span className="mt-2 flex items-center gap-1.5 text-[11px] uppercase tracking-[0.16em] text-white/45">
+                  <MapPin className="h-3 w-3" />
+                  {p.location}
+                </span>
+                <span className="mt-3 block text-sm leading-relaxed text-white/60">
+                  {p.description}
+                </span>
+                <span className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-white/70 transition-colors group-hover:text-gold">
+                  View project
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1" />
+                </span>
+              </button>
             </Reveal>
-          </div>
-          <Reveal direction="right">
-            <BeforeAfter
-              before={tilesImg}
-              after={livingImg}
-              beforeAlt="Plain untiled room before renovation"
-              afterAlt="Finished living room with premium marble-finish floor tiles"
-            />
-          </Reveal>
+          ))}
         </div>
       </div>
 
-      {open !== null && (
-        <div
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-ink/95 p-4 animate-in fade-in"
-          onClick={() => setOpen(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Project preview"
-        >
-          <button
-            onClick={() => setOpen(null)}
-            aria-label="Close preview"
-            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border border-white/25 text-white"
-          >
-            <X className="h-5 w-5" />
-          </button>
-          <figure className="max-w-4xl" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={projects[open]!.src}
-              alt={projects[open]!.alt}
-              className="max-h-[76vh] w-full rounded-lg object-contain animate-in zoom-in-95"
-            />
-            <figcaption className="mt-4 text-center">
-              <span className="font-display text-xl text-white">
-                {projects[open]!.title}
-              </span>
-              <span className="mt-1 block text-xs uppercase tracking-[0.18em] text-white/55">
-                {projects[open]!.location} · {projects[open]!.material}
-              </span>
-            </figcaption>
-          </figure>
-        </div>
+      {current && (
+        <ProjectDetail project={current} onClose={() => setOpen(null)} />
       )}
     </section>
   );
