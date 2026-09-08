@@ -87,9 +87,6 @@ function Head({
 const itemName = (id: string) =>
   catalogItems.find((i) => i.id === id)?.name ?? id;
 
-const itemCategory = (id: string) =>
-  catalogItems.find((i) => i.id === id)?.categoryId;
-
 function GetThisLook({ project }: { project: Project }) {
   const message = `Hi, I like the "${project.name}" project (${project.type}, ${project.location}) on your website. I would like the same look — please share products and prices.`;
   return (
