@@ -668,7 +668,7 @@ function CalculatorPage() {
                       onChange={(e) => setLabourRate(e.target.value)}
                     />
                     <p className="text-xs text-muted-foreground">
-                      Typical laying charge in Varanasi: ₹22–₹35.
+                      Optional — leave blank to skip.
                     </p>
                   </div>
                   <div className="space-y-2">
