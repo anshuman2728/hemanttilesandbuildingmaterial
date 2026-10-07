@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Calculator as CalcIcon,
+  CalendarCheck,
   Copy,
   FileDown,
   Grid2x2,
@@ -274,6 +275,7 @@ function CalculatorPage() {
     includeSkirting,
     skirtingHeight,
     distanceKm,
+    rooms,
   ]);
 
   const patternLabel = PATTERNS.find((p) => p.id === pattern)?.label ?? "";
