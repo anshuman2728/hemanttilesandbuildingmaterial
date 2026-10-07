@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Calculator as CalcIcon,
+  CalendarCheck,
   Copy,
   FileDown,
   Grid2x2,
@@ -82,6 +83,8 @@ const PATTERNS: {
 ];
 
 const inr = (n: number) => "₹" + Math.round(n).toLocaleString("en-IN");
+
+const ROOM_TYPES = ["Living Room", "Bedroom", "Kitchen", "Bathroom", "Balcony", "Office", "Commercial", "Outdoor"] as const;
 
 /* --------------------------------- pieces --------------------------------- */
 
@@ -177,8 +180,11 @@ function CalculatorPage() {
   const [perBox, setPerBox] = useState("4");
 
   const [wastage, setWastage] = useState("8");
-  const [rate, setRate] = useState("45");
-  const [labourRate, setLabourRate] = useState("28");
+  const [rate, setRate] = useState("");
+  const [labourRate, setLabourRate] = useState("");
+  const [roomType, setRoomType] = useState<(typeof ROOM_TYPES)[number]>("Living Room");
+  const [roomCount, setRoomCount] = useState("1");
+  const rooms = Math.max(1, Math.floor(parseFloat(roomCount) || 1));
   const [includeSkirting, setIncludeSkirting] = useState(false);
   const [skirtingHeight, setSkirtingHeight] = useState("4");
   const [distanceKm, setDistanceKm] = useState("8");
@@ -209,12 +215,13 @@ function CalculatorPage() {
     if (tileAreaM2 <= 0) return null;
 
     const perimeterM = 2 * (lm + wm);
-    const floorAreaM2 = surface === "wall" ? 0 : lm * wm;
-    const wallAreaM2 = surface === "floor" ? 0 : perimeterM * hm;
+    // Same per-room formulas as before, multiplied by the number of identical rooms.
+    const floorAreaM2 = (surface === "wall" ? 0 : lm * wm) * rooms;
+    const wallAreaM2 = (surface === "floor" ? 0 : perimeterM * hm) * rooms;
     const skirtingAreaM2 =
-      includeSkirting && surface !== "wall"
+      (includeSkirting && surface !== "wall"
         ? perimeterM * ((parseFloat(skirtingHeight) || 0) * 0.0254)
-        : 0;
+        : 0) * rooms;
 
     const totalAreaM2 = floorAreaM2 + wallAreaM2 + skirtingAreaM2;
     if (totalAreaM2 <= 0) return null;
@@ -268,13 +275,24 @@ function CalculatorPage() {
     includeSkirting,
     skirtingHeight,
     distanceKm,
+    rooms,
   ]);
 
   const patternLabel = PATTERNS.find((p) => p.id === pattern)?.label ?? "";
+  const roomLabel = roomType.toLowerCase();
+  const surfaceLabel = surface === "both" ? "floor + walls" : surface === "wall" ? "walls" : "floor";
+
+  const waMessage = result
+    ? `Hello, I calculated approximately ${result.totalAreaFt2.toFixed(0)} sq.ft (${surfaceLabel}) for my ${roomLabel}${rooms > 1 ? ` × ${rooms} rooms` : ""} using ${tileL}×${tileW} ${tileUnit} tiles in a ${patternLabel.toLowerCase()} pattern. Estimate: ${result.tilesNeeded} tiles${result.boxes ? `, ${result.boxes} boxes` : ""} incl. ${wastage || 0}% wastage. I would like a quotation.`
+    : "";
+  const visitMessage = result
+    ? `Hello, I'd like to book a showroom visit. I'm planning about ${result.totalAreaFt2.toFixed(0)} sq.ft of tiles for my ${roomLabel}.`
+    : "";
 
   const summaryLines = result
     ? [
         `Tile estimate — ${BUSINESS.name}`,
+        `Room type: ${roomType}${rooms > 1 ? ` × ${rooms} rooms` : ""}`,
         `Room: ${length} × ${width}${surface !== "floor" ? ` × ${height} (H)` : ""} ${roomUnit}`,
         `Surface: ${surface === "both" ? "Floor + walls" : surface === "wall" ? "Walls" : "Floor"}`,
         `Tile: ${tileL} × ${tileW} ${tileUnit} · ${patternLabel} · ${wastage || 0}% wastage`,
@@ -368,14 +386,21 @@ function CalculatorPage() {
         />
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="up">
-            <p className="eyebrow text-gold">Planning tools</p>
-            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] sm:text-6xl">
-              Advanced tile &amp; material calculator
+            <p className="eyebrow text-gold">Planning tool</p>
+            <h1 className="mt-4 max-w-3xl display-hero">
+              Plan your tiles with confidence
             </h1>
-            <p className="mt-5 max-w-xl text-ink-foreground/65">
-              Area, boxes, tiles, adhesive, grout, labour and delivery — priced
-              in seconds, with a PDF you can share with your contractor.
+            <p className="lede mt-6 max-w-xl text-ink-foreground/65">
+              Measure your space, choose a tile and get recommended tiles, boxes
+              and material quantities — then ask us for an exact quotation.
             </p>
+            <ol className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[0.7rem] uppercase tracking-[0.18em] text-ink-foreground/60">
+              {["Your space", "Choose material", "Calculate", "Your estimate", "Get quote"].map((s, i) => (
+                <li key={s} className="flex items-center gap-2">
+                  <span className="text-gold">0{i + 1}</span> {s}
+                </li>
+              ))}
+            </ol>
           </Reveal>
         </div>
       </section>
@@ -385,7 +410,38 @@ function CalculatorPage() {
           {/* inputs */}
           <div className="space-y-6">
             <Reveal direction="left">
-              <Card step="01" title="Room">
+              <Card step="01" title="Your space">
+                <div className="space-y-2">
+                  <Label>Room type</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {ROOM_TYPES.map((r) => (
+                      <button
+                        key={r}
+                        type="button"
+                        onClick={() => setRoomType(r)}
+                        className={cn(
+                          "rounded-sm border px-3.5 py-1.5 text-xs transition-colors",
+                          roomType === r
+                            ? "border-gold bg-gold/10 text-foreground"
+                            : "border-border text-muted-foreground hover:text-foreground",
+                        )}
+                      >
+                        {r}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="rooms">Number of identical rooms</Label>
+                  <Input
+                    id="rooms"
+                    type="number"
+                    min="1"
+                    step="1"
+                    value={roomCount}
+                    onChange={(e) => setRoomCount(e.target.value)}
+                  />
+                </div>
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                   <div className="space-y-2">
                     <Label htmlFor="length">Length</Label>
@@ -486,7 +542,7 @@ function CalculatorPage() {
             </Reveal>
 
             <Reveal direction="left">
-              <Card step="02" title="Tile &amp; pattern">
+              <Card step="02" title="Choose material — tile & pattern">
                 <div className="flex flex-wrap gap-2">
                   {TILE_PRESETS.map((p) => {
                     const active =
@@ -580,7 +636,7 @@ function CalculatorPage() {
             </Reveal>
 
             <Reveal direction="left">
-              <Card step="03" title="Wastage, rates &amp; delivery">
+              <Card step="03" title="Calculate — wastage & optional rates">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="wastage">Wastage / cutting (%)</Label>
@@ -612,7 +668,7 @@ function CalculatorPage() {
                       onChange={(e) => setLabourRate(e.target.value)}
                     />
                     <p className="text-xs text-muted-foreground">
-                      Typical laying charge in Varanasi: ₹22–₹35.
+                      Optional — leave blank to skip.
                     </p>
                   </div>
                   <div className="space-y-2">
@@ -635,17 +691,17 @@ function CalculatorPage() {
 
           {/* results */}
           <Reveal direction="right" className="lg:sticky lg:top-24">
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink text-ink-foreground shadow-luxe">
+            <div className="overflow-hidden rounded-sm border border-white/10 bg-ink text-ink-foreground shadow-luxe">
               <div className="flex items-center gap-2 border-b border-white/10 px-6 py-5">
                 <Ruler className="h-4 w-4 text-gold" />
-                <h2 className="font-display text-xl">Your estimate</h2>
+                <h2 className="font-display text-xl">04 · Your estimate</h2>
               </div>
 
               {result ? (
                 <div className="space-y-6 p-6">
                   <div>
                     <p className="text-[0.7rem] uppercase tracking-[0.18em] text-ink-foreground/50">
-                      Area to cover
+                      Total area · {roomLabel}{rooms > 1 ? ` × ${rooms}` : ""}
                     </p>
                     <p className="font-display text-4xl">
                       {result.totalAreaFt2.toFixed(1)}{" "}
@@ -664,41 +720,47 @@ function CalculatorPage() {
                   <div className="grid grid-cols-2 gap-3">
                     <Stat
                       icon={<Grid2x2 className="h-3.5 w-3.5" />}
-                      label="Tiles"
+                      label="Recommended tiles"
                       value={String(result.tilesNeeded)}
                       sub={`without wastage ${result.tilesExact}`}
                     />
                     <Stat
                       icon={<Package className="h-3.5 w-3.5" />}
-                      label="Boxes"
+                      label="Estimated boxes"
                       value={result.boxes ? String(result.boxes) : "—"}
                       sub={`${perBox || 0} per box`}
                     />
                     <Stat
                       icon={<Layers className="h-3.5 w-3.5" />}
-                      label="Adhesive"
-                      value={`~${result.adhesiveKg} kg`}
-                      sub="≈4 kg/m²"
+                      label="Wastage"
+                      value={`${Math.max(0, result.tilesNeeded - result.tilesExact)} tiles`}
+                      sub={`${wastage || 0}% allowance`}
                     />
                     <Stat
                       icon={<Layers className="h-3.5 w-3.5" />}
-                      label="Grout"
-                      value={`~${result.groutKg} kg`}
-                      sub="≈0.5 kg/m²"
+                      label="Adhesive · grout"
+                      value={`~${result.adhesiveKg} kg`}
+                      sub={`grout ~${result.groutKg} kg`}
                     />
                   </div>
 
-                  <div className="space-y-2 rounded-xl border border-white/10 bg-white/5 p-4 text-sm">
+                  {result.materialCost > 0 ? (
+                  <div className="space-y-2 rounded-sm border border-white/10 bg-white/5 p-4 text-sm">
+                    <p className="text-[0.7rem] uppercase tracking-[0.16em] text-ink-foreground/50">
+                      Estimated material cost · at your entered rate
+                    </p>
                     <div className="flex justify-between">
                       <span className="text-ink-foreground/60">Tiles</span>
-                      <span>{result.materialCost ? inr(result.materialCost) : "—"}</span>
+                      <span>{inr(result.materialCost)}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="flex items-center gap-1.5 text-ink-foreground/60">
-                        <HardHat className="h-3.5 w-3.5" /> Labour
-                      </span>
-                      <span>{result.labourCost ? inr(result.labourCost) : "—"}</span>
-                    </div>
+                    {result.labourCost > 0 && (
+                      <div className="flex justify-between">
+                        <span className="flex items-center gap-1.5 text-ink-foreground/60">
+                          <HardHat className="h-3.5 w-3.5" /> Labour
+                        </span>
+                        <span>{inr(result.labourCost)}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between">
                       <span className="flex items-center gap-1.5 text-ink-foreground/60">
                         <Truck className="h-3.5 w-3.5" /> Delivery
@@ -709,44 +771,47 @@ function CalculatorPage() {
                     </div>
                     <div className="flex items-baseline justify-between border-t border-white/15 pt-3">
                       <span className="text-ink-foreground/70">Estimated total</span>
-                      <span className="font-display text-2xl text-gold">
-                        {result.total ? inr(result.total) : "—"}
-                      </span>
+                      <span className="font-display text-2xl text-gold">{inr(result.total)}</span>
                     </div>
                   </div>
+                  ) : (
+                    <p className="rounded-sm border border-white/10 bg-white/5 p-4 text-xs leading-relaxed text-ink-foreground/60">
+                      Prices vary by brand and finish, so we don't guess them. Enter a tile rate in step 03 for a cost estimate, or ask us for an exact quotation.
+                    </p>
+                  )}
 
-                  <div className="space-y-2">
+                  <div className="space-y-3 border-t border-white/10 pt-6">
+                    <p className="text-[0.7rem] uppercase tracking-[0.18em] text-gold">05 · Get quote</p>
+                    <p className="font-display text-2xl">Want an exact quotation?</p>
+                    <Link
+                      to="/contact"
+                      className="btn btn-primary w-full justify-center"
+                    >
+                      <CalcIcon className="h-4 w-4" /> Get Exact Quote
+                    </Link>
                     <a
-                      href={whatsappLink(summary)}
+                      href={whatsappLink(waMessage)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-0.5"
+                      className="btn btn-secondary-dark w-full justify-center"
                     >
-                      <WhatsAppIcon className="h-4 w-4" />
-                      Send quote on WhatsApp
+                      <WhatsAppIcon className="h-4 w-4" /> Send to WhatsApp
                     </a>
-                    <button
-                      type="button"
-                      onClick={downloadPdf}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-medium text-ink transition-transform duration-300 hover:-translate-y-0.5"
+                    <a
+                      href={whatsappLink(visitMessage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary-dark w-full justify-center"
                     >
-                      <FileDown className="h-4 w-4" />
-                      Generate PDF
-                    </button>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        type="button"
-                        onClick={copySummary}
-                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-sm text-ink-foreground transition-colors hover:bg-white/10"
-                      >
+                      <CalendarCheck className="h-4 w-4" /> Book Showroom Visit
+                    </a>
+                    <div className="grid grid-cols-2 gap-2 pt-1">
+                      <button type="button" onClick={downloadPdf} className="btn btn-utility justify-center text-ink-foreground/70">
+                        <FileDown className="h-3.5 w-3.5" /> Save PDF
+                      </button>
+                      <button type="button" onClick={copySummary} className="btn btn-utility justify-center text-ink-foreground/70">
                         <Copy className="h-3.5 w-3.5" /> Copy
                       </button>
-                      <Link
-                        to="/contact"
-                        className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-4 py-2.5 text-sm text-ink-foreground transition-colors hover:bg-white/10"
-                      >
-                        <CalcIcon className="h-3.5 w-3.5" /> Enquire
-                      </Link>
                     </div>
                   </div>
 
